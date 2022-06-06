@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-require("dotenv").config();
 
 const app = express(); // creating an instance of an express 'APP'
 
@@ -19,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //hooked up pieces of my api
 require('./app/index');
 require('./app/routes/products.routes.js')(app);
+require('./app/routes/transactions.routes.js')(app);
 require('./app/routes/users.routes.js')(app);
 
 
