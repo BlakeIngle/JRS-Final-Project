@@ -1,7 +1,5 @@
 const db = require('../index');
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-// const TOKEN_KEY = 1092388347;
 const saltRounds = 10;
 const { v4: uuid } = require('uuid');
 
@@ -19,7 +17,7 @@ exports.login = (req, res) => {
     }
 
     const query = `
-        SELECT * FROM urls.users 
+        SELECT * FROM kayaks.users 
             WHERE email = ?;
     `;
 
@@ -35,7 +33,8 @@ exports.login = (req, res) => {
         } else if (results.length == 0) {
             res.status(404)
                 .send({
-                    message: "email or Password was incorrect."
+                    message: "email or Password was incorrect!",
+                    results: results[0]
                 });
         } else {
             let encryptedPassword = results[0].password;
@@ -45,19 +44,6 @@ exports.login = (req, res) => {
                 //successful login
 
                 let user = results[0];
-
-                //create token for the user
-                const token = jwt.sign(
-                    {
-                        userId: user.id,
-                        email: user.email
-                    },
-                    'abc123',
-                    {
-                        expiresIn: '2h'
-                    }
-                );
-                user.token = token; // attach token to the user
 
                 res.send({
                     message: "You have successfully logged in.",
@@ -109,7 +95,6 @@ exports.createNewUser = async (req, res) => {
                         error: err
                     });
             } else {
-                // case #3
                 res.status(500)
                     .send({
                         message: "There was an error creating your account.",
@@ -127,15 +112,14 @@ exports.deleteUserById = (req, res) => {
 
     let { id } = req.params;
 
-    id = Number(id);
+    id = String(id);
 
     const query = `
-        DELETE FROM urls.users 
+        DELETE FROM kayaks.users 
             WHERE (id = ?);
     `;
     const placeholders = [id];
 
-    // tell the database to execute that script
     db.query(query, placeholders, (err, results) => {
 
         if (err) {

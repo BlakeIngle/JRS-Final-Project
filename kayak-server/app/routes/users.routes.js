@@ -1,7 +1,4 @@
-
 module.exports = (app) => {
-    
-    // const { validateWebToken } = require('../auth');
     const users = require('../controllers/users.controller');
     
     app.post('/api/users', users.createNewUser);
