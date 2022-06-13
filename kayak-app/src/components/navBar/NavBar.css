@@ -1,74 +1,191 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-html,
-body {
+.navBar-root ul {
+    list-style: none;
     margin: 0;
     padding: 0;
 }
 
+.navBar-root {
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+    margin: 0;
 
-nav {
-    padding: 5px;
-    margin: 5px;
-
-    border-radius: 5px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    box-shadow: 0px 1px 5px black;
     font-family: 'Roboto', sans-serif;
+    /* font-size: 15pt; */
 
-    background-color: rgb(41, 170, 166);
+    background-color: var(--blue);
     color: white;
 
     display: flex;
+    flex-wrap: nowrap;
     justify-content: space-between;
+
+    /* width: 100%; */
+    min-width: fit-content;
+
 
     user-select: none;
 }
 
-nav a {
-    color: inherit;
-    text-decoration: unset;
+.navBar-root .burger-icon {
+    width: 3.5em;
 }
 
-nav a,
-nav span {
-    padding: 0.25rem 0.5rem;
+.navBar-root a {
+    color: inherit;
+    text-decoration: unset;
+    font-weight: bold;
+}
+ 
+
+.navBar-root a,
+.navBar-root span {
     display: inline-block;
-    line-height: 1rem;
-    transition: 0.2s;
+    z-index: 3;
+    line-height: 1em;
     cursor: pointer;
 
     border-radius: 5px;
-}
 
-nav a:hover,
-nav span:hover {
-    background-color: rgb(250, 204, 135);
-    color: rgb(31, 118, 115);
-
+    padding: 1em;
+    padding-top: 1.5em;
+   
 
 }
 
-nav>div {
+.navBar-root a:hover,
+.navBar-root span:hover {
+    background-color: var(--yellow);
+    color: var(--blue);
+}
+
+.navBar-root>div {
     display: flex;
+    justify-content: space-between;
+}
+
+.navBar-root .user-stuff {
+    z-index: 3;
+}
+
+.navBar-root .burger-icon {
+    
+    z-index: 3;
+}
+
+.navBar-root .searchBar {
+    z-index: 3;
+    margin-left: .25em;
 
 }
 
-@media screen and (max-width: 600px) {
+
+
+
+.login-signup {
+    margin: auto;
+    color: white;
+}
+
+.user-logged-in {
+    margin: auto;
+    color: var(--yellow);
+}
+
+.user-logged-in:hover {
+    background-color: var(--yellow);
+    color: var(--blue);
+}
+
+
+.kayaks-hoverable-container,
+.shoes-hoverable-container,
+.user-hoverable-container {
+    position: relative;
+
+}
+
+.kayaks-hoverable-container .hidden-menu-kayaks,
+.shoes-hoverable-container .hidden-menu-shoes{
+    display: none;
+    position: absolute;
+
+    width: 100%;
+
+    color: var(--yellow);
+    background-color: var(--blue);
+    box-shadow: .5px .5px 2px black;
+
+}
+
+.user-hoverable-container .hidden-menu-user {
+    display: none;
+    position: absolute;
+    right: .00001em;
+
+    width: fit-content;
+
+    color: var(--yellow);
+    background-color: var(--blue);
+    box-shadow: .5px .5px 2px black;
+
+
+}
+
+.kayaks-hoverable-container:hover>.hidden-menu-kayaks,
+.shoes-hoverable-container:hover>.hidden-menu-shoes, 
+.user-hoverable-container:hover>.hidden-menu-user {
+    display: block;
+    border-radius: 10px;
+    /* width: fit-content; */
+}
+
+.kayaks-hoverable-container .hidden-menu-kayaks .option-one:hover,
+.kayaks-hoverable-container .hidden-menu-kayaks .option-two:hover,
+.shoes-hoverable-container .hidden-menu-shoes .option-one:hover,
+.shoes-hoverable-container .hidden-menu-shoes .option-two:hover, 
+.user-hoverable-container .hidden-menu-user .option-one:hover,
+.user-hoverable-container .hidden-menu-user .option-two:hover {
+
+    color: var(--blue);
+    background-color: var(--yellow);
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+
+
+
+/* @media screen and (min-width: 1200px) {
+    nav.invisible {
+        display: none;
+    }
+} */
+
+/* @media screen and (max-width: 700px) {
 
     nav {
         margin: 0;
-
         position: fixed;
         left: 0;
         top: 0;
-        bottom: 0;
 
-        border-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 0;
 
     }
 
     nav,
     nav>div {
         flex-direction: column;
+
 
     }
 
@@ -77,4 +194,4 @@ nav>div {
     }
 
 
-}
+} */

@@ -1,0 +1,43 @@
+.burger-menu-container {
+    position: fixed;
+    padding-top: 4.5em;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+    z-index: 2;
+
+    background-color: var(--blue);
+
+    animation: slide-down-top .5s;
+   
+}
+
+.burger-menu-container a,
+.burger-menu-container .hoverable-container {
+    /* padding: 1em; */
+    font-size: 25pt;
+    height: 100%;
+    color: var(--yellow);
+    text-decoration: none;
+
+    border-bottom: solid var(--yellow) 1px;
+}
+
+.burger-menu-container>a:hover {
+    color: var(--blue);
+    background-color: var(--yellow);
+}
+
+@keyframes slide-down-top {
+    from {
+        transform: translateY(-100%),
+        
+    }
+    to{
+        transform: translateY(0);
+    }
+}
+
+
+
