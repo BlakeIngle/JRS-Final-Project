@@ -7,15 +7,27 @@
     background-color: var(--blue);
 }
 
-.product-details-root .product-details-container {
+.product-details-root .product-container {
     display: flex;
     justify-content: space-between;
     background-color: white;
     padding: 2em;
 }
 
-.product-details-root .product-details-container .product-info-container {
+.product-details-root .product-container .product-price-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
   box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
 }
+
+.product-details-root .product-details-container .shipping-disclosure {
+text-align: left;
+
+border-top: solid var(--blue) 1px;
+border-bottom: solid var(--blue) 1px;
+}
+
+
 

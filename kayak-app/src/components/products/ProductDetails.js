@@ -59,16 +59,23 @@ export default function ProductDetails({ name, price, brand, color, style, descr
 
   return (
     <div className="product-details-root">
-      <div className='product-details-container'>
+      <div className='product-container'>
         <img className='image' src={product?.image} />
-        <div>
+
+        <div className="product-details-container">
           <h4 className='product-name'><b>{product?.name}</b></h4>
           <h4 className='brand'>{product?.brand}</h4>
-          
+
+          <div className="shipping-disclosure">
+            <p>In Stock</p>
+            <p>Ships from United States</p>
+            <p>Most customers receive <br></br>within <b>2-3 days</b></p>
+          </div>
+
+          <p>{product?.description}</p>
         </div>
 
-
-        <div className='product-info-container'>
+        <div className='product-price-container'>
 
           <h4 className='price'>${product?.price}</h4>
 
