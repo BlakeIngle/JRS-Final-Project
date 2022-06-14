@@ -1,0 +1,26 @@
+
+html {
+    background-color: var(--yellow);
+}
+
+.homepage-root {
+    text-align: center;
+    background-color: var(--blue);
+    margin-top: 9em;
+    padding: 3em;
+    font-size: 24pt;
+    color: white;
+} 
+
+.homepage-root>button {
+    font-size: 24pt;
+    padding: 1em;
+    background-color: var(--yellow);
+    color: var(--blue);
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.homepage-root>button:hover {
+    background-color: var(--darkYellow);
+}

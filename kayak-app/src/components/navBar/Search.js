@@ -11,9 +11,9 @@ export default function Search({ onSubmit }) {
     e.preventDefault();
     if (onSubmit) {
       onSubmit(searchQuery);
+      console.log('search submitted')
     }
     return;
-
   }
 
   return (

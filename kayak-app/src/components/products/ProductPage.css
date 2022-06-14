@@ -1,0 +1,32 @@
+.products-root {
+  overflow: auto;
+  background-color: var(--yellow);
+  text-align: center;
+}
+
+.products-root .search-bar-container {
+  display: flex;
+  justify-content: center;
+  
+  background-color: var(--blue);
+
+  height: 4em;
+}
+
+.products-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2px;
+
+  max-width: 1150px;
+  margin: auto;
+
+  background-color: white;
+}
+
+.products-root .header {
+  color: var(--blue);
+  background-color: white;
+  padding: 1.5em 0 1.5em 0;
+}

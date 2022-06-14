@@ -9,6 +9,6 @@ module.exports = (app) => {
     app.get('/api/products/style/:style', products.getProductsByStyle);
     app.get('/api/products/brand/:brand', products.getProductsByBrand);
     app.get('/api/products/category/:category', products.getProductsByCategory);
-    app.get('/api/products/search/:query', products.getProductsByQuery);
+    app.get('/api/products/search/:searchParams', products.getProductsBySearch);
 
 }

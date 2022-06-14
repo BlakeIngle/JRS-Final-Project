@@ -72,7 +72,7 @@ VALUES
     (uuid(), 'PK14 Angler', 2337.30,  '2 person 14-foot sit on top tandem pedal fishing kayak w/ instant reverse pedal drive, hand control rudder, paddle, and upright seat', 'kayaks', 'BKC', 'sit-on-top', "14'", 'blue', 'https://cdn.shopify.com/s/files/1/0086/9128/6076/products/Blue_Format.png?v=1649093514', 4.2 ),
     (uuid(), 'PK11 Angler', 1437.30,  '1 person 10.5-foot sit on top solo fishing kayak w/ trolling motor, paddle, and upright aluminum seat', 'kayaks', 'BKC', 'sit-on-top', "10'", 'brown', 'https://cdn.shopify.com/s/files/1/0086/9128/6076/products/pk11_5_edited.jpg?v=1649430919', 4.3 ),
     (uuid(), 'Access 9.5', 489.00,  '1 person sit-on-top kayak', 'kayaks', 'Pelican', 'sit-on-top', "9'", 'sunset', 'https://newcontent.westmarine.com/content/images/catalog/large/19381284_LRG.26112018103026.jpg', 4.5 ),
---PDFs
+--PFDs
     (uuid(), 'Recruit Neo', 59.99,  'JetPilot Recruit Neo PFD', 'PFDs', 'JetPilot', 'vest', 'adult', 'black', 'https://cdn.shopify.com/s/files/1/0164/3964/0128/products/JP15238_RECRUIT_PFD_BLACK_F_720x.jpg?v=1651560295', 4.5 ),
     (uuid(), 'A-10 Comp', 99.99,  'JetPilot A-10 Comp Vest', 'PFDs', 'JetPilot', 'vest', 'adult', 'green', 'https://cdn.shopify.com/s/files/1/0164/3964/0128/products/JP16227_A10_GREEN_720x.jpg?v=1643940528', 4.0 ),
     (uuid(), 'L.R.E. Helmsman Neo', 119.95,  "JetPilot men's L.R.E. Helmsman Neo USCG approved vest", 'PFDs', 'JetPilot', 'adult', 'vest', 'black', 'https://cdn.shopify.com/s/files/1/0164/3964/0128/products/NEW_JP20101_REVISED_Helmsman_Neo_PFD_Radio_Strap_720x.jpg?v=1648521451', 4.8 ),

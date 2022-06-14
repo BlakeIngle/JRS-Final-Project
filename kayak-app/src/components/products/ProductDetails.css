@@ -1,0 +1,21 @@
+.product-details-root{
+   
+    text-align: center;
+    background-color: var(--blue);
+    margin-top: 9em;
+    padding: 3em;
+    background-color: var(--blue);
+}
+
+.product-details-root .product-details-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 2em;
+}
+
+.product-details-root .product-details-container .product-info-container {
+
+  box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+}
+

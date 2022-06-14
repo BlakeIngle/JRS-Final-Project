@@ -26,8 +26,8 @@ function getAllProducts() {
     return axios.get(`${URL}/products`);
 }
 
-function getProductById(id) {
-    return axios.get(`${URL}/products/${id}`);
+function getProductsById(productId) {
+    return axios.get(`${URL}/products/${productId}`);
 }
 
 function getProductsByColor(color) {
@@ -46,7 +46,7 @@ function getProductsByRating(rating) {
     return axios.get(`${URL}/products/rating/${rating}`);
 }
 
-function getProductsByCategory(style) {
+function getProductsByCategory(category) {
     return axios.get(`${URL}/products/category/${category}`);
 }
 
@@ -110,7 +110,7 @@ function deleteCartItem(itemId, userId) {
 
 const api = {
     getAllProducts,
-    getProductById,
+    getProductsById,
     getProductsByColor,
     getProductsByStyle,
     getProductsByBrand,

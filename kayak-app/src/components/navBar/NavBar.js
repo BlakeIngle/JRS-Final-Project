@@ -24,20 +24,22 @@ export default function () {
       <Link to="" >
         <FontAwesomeIcon size="lg" icon={faUser} />
       </Link>
+
       <div className="hidden-menu-user">
         <div className="option-one">
           <Link to={`${user ? '/purchases' : '/login'}`}>
             Purchases
           </Link>
         </div>
+        
         <div className="option-two" onClick={() => {
-          ls.removeUser()
-        }}>
+          ls.removeUser() }}>
           <Link to="">
             Log out
           </Link>
         </div>
       </div>
+
     </div>
   )
 
@@ -152,9 +154,11 @@ export default function () {
 
       </div>) : ""}
 
-      {true && width <= 970 ? (<div className="searchBar">
+      {/* {true && width <= 970 ? (<div className="searchBar">
         <Search />
-      </div>) : ""}
+      </div>) : ""} */}
+
+      {/* <h1>Modern Paddle</h1> */}
 
       <div className="user-stuff">
         <div>

@@ -209,7 +209,7 @@ exports.getProductsByCategory = (req, res) => {
   });
 };
 
-exports.getProductsByQuery = (req, res) => {
+exports.getProductsBySearch = (req, res) => {
     console.log(req.query);
 
     var filters = ``;
@@ -234,13 +234,13 @@ exports.getProductsByQuery = (req, res) => {
         if (err) {
             res.status(500)
                 .send({
-                    message: "There was an error getting products by query.",
+                    message: "There was an error getting products by search filter.",
                     error: err
                 })
         } else if (results.length == 0) {
             res.status(404)
                 .send({
-                    message: "no products found with that query"
+                    message: "no products found with that search filter"
                 })
         } else {
             res.send({
