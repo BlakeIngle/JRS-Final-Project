@@ -135,14 +135,14 @@ function ProductPage() {
         {/* {products.map(product => <ProductCard key={product.id} {...product} />)} */}
 
 
-        {products.filter(() => {
+        {products.filter(product => {
           if (searchQuery == '') {
             return true
 
           }
           else {
             const searchKeyword = searchQuery.toLowerCase()
-            return products.name.toLowerCase().includes(searchKeyword)
+            return product.name.toLowerCase().includes(searchKeyword)
           }
         })
           .map(product => <ProductCard key={product.id} {...product} />)}
