@@ -1,0 +1,65 @@
+.page-not-found-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    gap: 1em;
+
+    width: fit-content;
+    padding: 1em;
+
+}
+
+.page-not-found-root .image-frame {
+    width: 18em;
+    height: 14.8em;
+    margin: auto;
+    margin-bottom: 0;
+    padding: 0;
+    border: solid var(--blue) 3px;
+    background-color: var(--blue);
+}
+
+.page-not-found-root img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    
+}
+.page-not-found-root p {
+    font-weight: 300;
+}
+
+.page-not-found-root h1 {
+    font-size: 4em;
+    padding: 0;
+    margin: .05em;
+}
+
+.page-not-found-root h4 {
+    margin: 0;
+    font-weight: 900;
+}
+
+.page-not-found-root .links-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+
+    text-align: left;
+    width: fit-content;
+
+    color: var(--blue);
+}
+
+.page-not-found-root .links-container a {
+    color: black;
+    font-weight: bold;
+    width: fit-content;
+}
+
+.page-not-found-root .links-container a:hover {
+color: var(--blue);
+}

@@ -1,14 +1,27 @@
 .past-orders-root {
-    margin-top: 4em;
+    padding-top: 1em;
+    margin-top: -1em;
     border-radius: 10px;
+    background-color: white;
 
 }
 
 .past-orders-root th {
     text-decoration: underline;
     color: var(--yellow);
+    background-color: var(--blue);
+   
     padding: 1em;
-    font-size: 20pt;
+    font-size: 12pt;
+
+}
+
+.past-orders-root a {
+    color: black;
+}
+
+.past-orders-root a:hover {
+    color: var(--blue);
 }
 
 .past-orders-root table {
@@ -20,6 +33,7 @@
 
 .past-orders-root td {
     padding: 1em;
+    border-bottom: solid var(--blue) 1px;
 
 }
 
@@ -28,10 +42,10 @@
 }
 
 .past-orders-root tr:nth-child(even) {
-    background-color: var(--lightBlue);
+    background-color: var(white);
 }
 
 .past-orders-root tr:nth-child(odd) {
-    background-color: var(--blue);
+    background-color: var(white);
 
 }

@@ -1,26 +1,64 @@
-
-html {
-    background-color: var(--yellow);
+html, body {
+    padding: 0;
+    margin: 0;
 }
+
 
 .homepage-root {
-    text-align: center;
-    background-color: var(--blue);
-    margin-top: 9em;
-    padding: 3em;
-    font-size: 24pt;
-    color: white;
-} 
-
-.homepage-root>button {
-    font-size: 24pt;
-    padding: 1em;
-    background-color: var(--yellow);
-    color: var(--blue);
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
-.homepage-root>button:hover {
-    background-color: var(--darkYellow);
+
+.homepage-root .header-container {
+    display: flex;
+    flex-direction: column;
+
+    color: white;
+    background-color: var(--blue);
+
+    padding: 1em;
+    padding-top: 2em;
+    width: auto;
+    font-size: 24pt;
+    min-height: 100%;
+}
+
+.homepage-root .header-container h3 {
+    color: var(--yellow);
+    margin: 0;
+    z-index: 2;
+}
+
+
+.homepage-root .carousel-container {
+    background-color: var(--yellow);
+    margin-top: -.29em;
+    margin-bottom: -.29em;
+}
+
+.shop-button {
+    padding: 1em;
+    width: fit-content;
+    margin: auto;
+
+
+    background-color: var(--yellow);
+    color: black;
+
+    border: solid var(--blue) 2px;
+    border-radius: 10px;
+
+    font-weight: bold;
+    font-size: 24pt;
+}
+
+.shop-button:hover {
+    cursor: pointer;
+    color: var(--yellow);
+    background-color: var(--blue);
+    border: solid var(--yellow) 2px;
 }

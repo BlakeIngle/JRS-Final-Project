@@ -1,6 +1,6 @@
 .products-root {
   overflow: auto;
-  background-color: var(--yellow);
+  /* background-color: var(--yellow); */
   text-align: center;
 }
 
@@ -10,7 +10,15 @@
   
   background-color: var(--blue);
 
-  height: 4em;
+  /* height: 4em; */
+  max-width: 1085px;
+  margin: auto;
+
+
+  color: var(--yellow);
+  font-size: 24pt;
+  padding: 1em;
+  font-weight: bold;
 }
 
 .products-container {
@@ -26,7 +34,7 @@
 }
 
 .products-root .header {
-  color: var(--blue);
-  background-color: white;
+  color: white;
+  background-color: var(--blue);
   padding: 1.5em 0 1.5em 0;
 }

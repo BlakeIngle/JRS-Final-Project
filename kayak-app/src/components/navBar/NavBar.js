@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,9 +7,12 @@ import '../navBar/NavBar.css'
 import Search from './Search';
 import BurgerMenu from './BurgerMenu';
 import { useLocalStorage } from '../../services/localStorage.service';
+import { Context } from '../../App';
+
 
 export default function () {
 
+  const { cart, addItem, decreaseQty, increaseQty, removeItem, clearCart } = useContext(Context)
   const navigate = useNavigate();
   const ls = useLocalStorage();
   const user = ls.getUser();
@@ -31,9 +34,10 @@ export default function () {
             Purchases
           </Link>
         </div>
-        
+
         <div className="option-two" onClick={() => {
-          ls.removeUser() }}>
+          ls.removeUser()
+        }}>
           <Link to="">
             Log out
           </Link>
@@ -51,8 +55,26 @@ export default function () {
     </div>
   )
 
+  // This variable is needed to calculate the quantity
+  // of items within the local storage shopping cart 
+  // within the totalCartQty below
+  var cartSum = 0;
+
+  function totalCartQty(cartSum) {
+
+    for (let item of cart) {
+      cartSum += item.quantity
+
+    }
+    return cartSum;
+  }
+
+
 
   useEffect(() => {
+
+    totalCartQty(cartSum)
+
 
     setIsHidden(true);
 
@@ -67,7 +89,7 @@ export default function () {
       window.removeEventListener('resize', handleResize)
     }
 
-  }, [location])
+  }, [location, cart, cartSum])
 
   return (
     <nav className="navBar-root">
@@ -97,14 +119,14 @@ export default function () {
           Home
         </Link>
 
-        <div className="kayaks-hoverable-container">
+        <div className="hoverable-container">
 
           <Link
             to="/products/category/kayaks">
             Kayaks
           </Link>
 
-          <div className="hidden-menu-kayaks">
+          <div className="hidden-menu">
             <div className="option-one">
               <Link to="/products/style/sit-in">
                 Sit-in
@@ -126,19 +148,37 @@ export default function () {
           Paddles
         </Link>
 
-        <Link
-          to="/products/category/PFDs">
-          PFDs
-        </Link>
+        <div className="hoverable-container">
+          <Link
+            to="/products/category/PFDs">
+            PFDs
+          </Link>
 
-        <div className="shoes-hoverable-container">
+          <div className="hidden-menu">
+            <div className="option-one">
+              <Link to="/products/size/kids">
+                Kids
+              </Link>
+            </div>
+
+            <div className="option-two">
+              <Link to="/products/size/adult">
+                Adult
+              </Link>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div className="hoverable-container">
 
           <Link
             to="/products/category/watershoes">
             Water&nbsp;Shoes
           </Link>
 
-          <div className="hidden-menu-shoes">
+          <div className="hidden-menu">
             <div className="option-one">
               <Link to="/products/style/mens">
                 Mens
@@ -165,11 +205,14 @@ export default function () {
           {user ? userBtn : loginSignupBtn}
         </div>
 
-        <Link to="/cart">
-          <div className="checkout">
-            <FontAwesomeIcon size="lg" icon={faShoppingCart} />
-          </div>
-        </Link>
+        <div className="checkout">
+          <Link to="/cart">
+            <div className='icon-container'>
+              <FontAwesomeIcon size="lg" icon={faShoppingCart} />
+              <span className="cart-qty">{totalCartQty(cartSum)}</span>
+            </div>
+          </Link>
+        </div>
       </div>
 
     </nav>

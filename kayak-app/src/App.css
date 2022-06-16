@@ -1,13 +1,18 @@
 :root {
-  --blue: hsl(178, 61%, 41%);
-  --yellow: hsl(36, 92%, 75%);
-  --darkYellow: hsl(36, 92%, 70%);
-  --lightBlue: hsl(178, 61%, 55%);
+  --blue: #29a8a4;
+  /* --yellow: hsl(36, 92%, 75%); */
+  --yellow: #f9c16c;
+  --darkYellow: #f9c16c;
+  /* --lightBlue: hsl(178, 61%, 55%); */
 }
 
+html,
+body {
+}
 
 .App {
   text-align: center;
+  
 }
 
 .App-logo {

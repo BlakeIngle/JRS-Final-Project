@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 .navBar-root ul {
-    list-style: none;
+    /* list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 0; */
+}
+
+nav {
+    width: 100%;
 }
 
 .navBar-root {
@@ -11,9 +15,8 @@
     top: 0px;
     z-index: 10;
     margin: 0;
+    height: 3.3em;
 
-    border-bottom-right-radius: 7px;
-    border-bottom-left-radius: 7px;
     box-shadow: 0px 1px 5px black;
 
     font-family: 'Roboto', sans-serif;
@@ -27,8 +30,8 @@
     justify-content: space-between;
 
     /* width: 100%; */
-    min-width: fit-content;
 
+    min-width: fit-content;
 
     user-select: none;
 }
@@ -42,21 +45,14 @@
     text-decoration: unset;
     font-weight: bold;
 }
- 
 
 .navBar-root a,
 .navBar-root span {
     display: inline-block;
     z-index: 3;
-    line-height: 1em;
     cursor: pointer;
 
-    border-radius: 5px;
-
     padding: 1em;
-    padding-top: 1.5em;
-   
-
 }
 
 .navBar-root a:hover,
@@ -71,8 +67,37 @@
 }
 
 .navBar-root .user-stuff {
-
     z-index: 3;
+}
+
+.navBar-root .checkout {
+    width: 100%;
+    height: 100%;
+}
+
+.navBar-root .checkout .icon-container {
+    position: relative;
+}
+
+.navBar-root .checkout .cart-qty {
+    position: absolute;
+    right: -7px;
+    top: -7px;
+
+    font-size: small;
+
+    color: black;
+    background-color: var(--yellow);
+
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    padding: 2px;
+}
+
+.navBar-root .checkout:hover .cart-qty {
+    background-color: white;
+    color: black;
 }
 
 .navBar-root .burger-icon {
@@ -99,25 +124,27 @@
     color: var(--blue);
 }
 
-
-.kayaks-hoverable-container,
-.shoes-hoverable-container,
 .user-hoverable-container {
     position: relative;
+    border-radius: 5px;
 }
 
-.kayaks-hoverable-container .hidden-menu-kayaks,
-.shoes-hoverable-container .hidden-menu-shoes{
+.hoverable-container {
+    position: relative;
+    margin: auto;
+    height: 100%;
+}
+
+.hoverable-container .hidden-menu {
     display: none;
     position: absolute;
+    /* top: 3.76em; */
 
     width: 100%;
 
     color: var(--yellow);
     background-color: var(--blue);
     box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
-
-
 }
 
 .user-hoverable-container .hidden-menu-user {
@@ -132,18 +159,15 @@
     box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
 }
 
-.kayaks-hoverable-container:hover>.hidden-menu-kayaks,
-.shoes-hoverable-container:hover>.hidden-menu-shoes, 
+.hoverable-container:hover>.hidden-menu,
 .user-hoverable-container:hover>.hidden-menu-user {
     display: block;
     border-radius: 10px;
     /* width: fit-content; */
 }
 
-.kayaks-hoverable-container .hidden-menu-kayaks .option-one:hover,
-.kayaks-hoverable-container .hidden-menu-kayaks .option-two:hover,
-.shoes-hoverable-container .hidden-menu-shoes .option-one:hover,
-.shoes-hoverable-container .hidden-menu-shoes .option-two:hover, 
+.hoverable-container .hidden-menu .option-one:hover,
+.hoverable-container .hidden-menu .option-two:hover,
 .user-hoverable-container .hidden-menu-user .option-one:hover,
 .user-hoverable-container .hidden-menu-user .option-two:hover {
 
@@ -151,9 +175,7 @@
     background-color: var(--yellow);
     border-radius: 10px;
     overflow: hidden;
-
 }
-
 
 
 

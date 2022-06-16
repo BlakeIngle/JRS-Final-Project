@@ -67,7 +67,7 @@ export default function ProductDetails({ name, price, brand, color, style, descr
           <h4 className='brand'>{product?.brand}</h4>
 
           <div className="shipping-disclosure">
-            <p>In Stock</p>
+            <b>In Stock</b>
             <p>Ships from United States</p>
             <p>Most customers receive <br></br>within <b>2-3 days</b></p>
           </div>
@@ -75,9 +75,15 @@ export default function ProductDetails({ name, price, brand, color, style, descr
           <p>{product?.description}</p>
         </div>
 
+
         <div className='product-price-container'>
 
           <h4 className='price'>${product?.price}</h4>
+
+          <div>
+            <b>Quantity</b>
+            <p>1</p>
+          </div>
 
           <button
             onClick={user ? addItemToCart : requestUserLogin}
@@ -86,7 +92,6 @@ export default function ProductDetails({ name, price, brand, color, style, descr
             <span> Add to Cart</span>
           </button>
         </div>
-
       </div>
     </div>
   )

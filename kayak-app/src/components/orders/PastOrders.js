@@ -32,6 +32,8 @@ export default function PastOrders() {
 
   return (
     <div className="past-orders-root">
+
+      <h1>Order History</h1>
       <table>
         <tr>
           <th>Order Number</th>

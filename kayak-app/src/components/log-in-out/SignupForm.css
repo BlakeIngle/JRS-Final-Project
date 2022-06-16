@@ -1,6 +1,3 @@
-
-
-
 .signup-root {
     display: flex;
     justify-content: center;
@@ -13,7 +10,7 @@
     height: 25em;
     border-radius: 5px;
     margin: auto;
-    margin-top: 7em;
+    margin-top: 5em;
     font-size: x-large;
 
 }
@@ -24,34 +21,36 @@
     border: solid var(--yellow) 1px;
 }
 
-.input-form-root>input {
+/* .input-form-root>input {
     margin: 0em 8em .75em;
     padding: .75em 1.25em;
     border: solid white 1px;
     border-radius: 3px;
     text-align: center;
+    color: var(--blue);
     background-color: hsl(178, 61%, 45%);
+    background-color: white;
     font-size: inherit;
     transition: none;
  
-}
+} */
 
-.input-form-root input:-webkit-autofill:hover, 
+/* .input-form-root input:-webkit-autofill:hover, 
 .input-form-root input:-webkit-autofill,
 .input-form-root input:-webkit-autofill:focus, 
 .input-form-root input:-webkit-autofill:active{
-    box-shadow: 0 0 0 40px  hsl(178, 61%, 45%) inset !important;
+    box-shadow: 0 0 0 40px  white inset !important;
     transition: none;
-}
+} */
 
 /*Change text in autofill textbox*/
-.input-form-root input:-webkit-autofill{
+/* .input-form-root input:-webkit-autofill{
     -webkit-text-fill-color: var(--yellow) !important;
-}
+} */
 
-.input-form-root input::selection {
+/* .input-form-root input::selection {
     background: var(--blue); /* WebKit/Blink Browsers */
-  }
+ */
 
 .input-form-root>input:focus {
     outline: none;
@@ -61,12 +60,13 @@
 }
 
 .input-form-root>input:hover {
-    background-color: hsl(178, 61%, 55%);
+    /* box-shadow: 0 10px 20px rgb(0 0 0 / 10%); */
+
 }
 
 
 .input-form-root>input::placeholder {
-    color: white;
+    color: var(--blue);
 }
 
 .signup-root>a {
@@ -81,6 +81,7 @@
 
 .signup-root .login-btn,
 .signup-root .signup-btn {
+    cursor: pointer;
     color: var(--blue);
     background-color: var(--yellow);
     font-weight: bold;
@@ -97,6 +98,7 @@
 
 .signup-root .login-btn:hover,
 .signup-root .signup-btn:hover {
+    cursor: pointer;
     background-color: var(--darkYellow);
 }
 

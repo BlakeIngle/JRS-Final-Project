@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import './Search.css'
 
-export default function Search({ onSubmit }) {
+export default function Search({ onSubmit, onChange }) {
 
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -11,7 +11,6 @@ export default function Search({ onSubmit }) {
     e.preventDefault();
     if (onSubmit) {
       onSubmit(searchQuery);
-      console.log('search submitted')
     }
     return;
   }
@@ -20,16 +19,19 @@ export default function Search({ onSubmit }) {
     <div className="search-container-root">
       <form className="search-form-root"
         onSubmit={handleFormSubmit}>
+
         <input className="search-input"
           type="text"
           name="search"
           placeholder="Search and Shop"
           onChange={(e) => {
             setSearchQuery(e.target.value)
+            onChange(e.target.value)
           }}
         />
+
         <button type="submit">
-          <FontAwesomeIcon icon={faMagnifyingGlass}/>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
       </form>
     </div>

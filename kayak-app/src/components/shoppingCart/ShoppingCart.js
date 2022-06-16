@@ -1,8 +1,10 @@
 import { useApi } from '../../services/axios.service'
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../shoppingCart/ShoppingCart.css'
 import { useContext, useEffect, useState } from 'react';
 import { useLocalStorage } from '../../services/localStorage.service';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Context } from '../../App';
 
 export default function ShoppingCart() {
@@ -11,6 +13,8 @@ export default function ShoppingCart() {
   const http = useApi();
   const ls = useLocalStorage();
   const navigate = useNavigate();
+  const [width, setWidth] = useState(window.innerWidth)
+
 
   // const [products, setProducts] = useState([])
   // const [cart, setCart] = useState([]);
@@ -34,9 +38,9 @@ export default function ShoppingCart() {
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+  }
 
-  
+
 
   // function getUserShoppingCart() {
   //     if (user) {
@@ -134,89 +138,133 @@ export default function ShoppingCart() {
       })
   }
 
+
+  // This variable is needed to calculate the quantity
+  // of items within the local storage shopping cart 
+  // within the totalCartQty function below
+  var cartSum = 0;
+
+  function totalCartQty(cartSum) {
+
+    for (let item of cart) {
+      cartSum += item.quantity
+
+    }
+    return cartSum;
+  }
+
   useEffect(() => {
-    
-  }, [cart]);
+    totalCartQty(cartSum)
+    function handleResize() {
+
+      setWidth(window.innerWidth)
+    }
+
+    console.log(width)
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+
+
+
+  }, [cart, cartSum]);
 
   return (
     <div className="shopping-cart-root"
       onSubmit={handleCheckout}>
-      <h2 className="cart-header">Shopping Cart</h2>
-      <div>
-        {cart?.length === 0 &&
-          <div className="empty-cart">
-            Cart Is Empty
-          </div>}
-      </div>
-      <div className="cart-container">
+      <h2 className="cart-header">
+        Shopping Cart ({totalCartQty(cartSum)} items)
+      </h2>
+      {cart?.length === 0 ?
+        <div>
+          {cart?.length === 0 &&
+            <div className="empty-cart-container">
+              <p className="empty-cart-header">
+                Oh...it seems like the cart is empty...
+              </p>
+              <div className="empty-cart-call-to-action">
+                <p>Looking for shopping ideas?</p>
+                <p> Check out our products</p>
+                <div>
+                  <Link to='/products'>
+                    HERE
+                  </Link>
+                </div>
+              </div>
 
-        <div className="shopping-cart-items">
-          {cart.map((item) => (
-            <CartItem key={item?.id}
-              id={item?.id}
-              price={item?.price}
-              quantity={item?.quantity}
-              name={item?.name}
-            onIncreaseClicked={onIncreaseClicked}
-            onDecreaseClicked={onDecreaseClicked}
-            removeItem={removeItem}
-            />
-          ))}
+            </div>}
         </div>
+        :
+        <div className="cart-container">
 
-        {cart?.length !== 0 && (
-          <div className="cart-summary-container">
-            <h4 className="summary-header">Order Summary</h4>
-
-            <div>
-              <div>Sub Total</div>
-              <div>${subTotal.toFixed(2)}</div>
-            </div>
-            <div className="taxes">
-              <div>Tax</div>
-              <div>{tax?.toFixed(2)}</div>
-            </div>
-            <div className="shipping">
-              <div>Shipping Cost</div>
-              <div>${shipping?.toFixed(2)}</div>
-            </div>
-            <div className="total-cost">
-              <h4>Total Price</h4>
-              <h4>${grandTotal?.toFixed(2)}</h4>
-            </div>
-
-            <button type="button"
-              onClick={handleCheckout}
-              className="checkout-btn"
-            >
-              Checkout
-            </button>
+          <div className="shopping-cart-items">
+            {cart.map((item) => (
+              <CartItem key={item?.id}
+                image={item.image}
+                id={item?.id}
+                price={item?.price}
+                quantity={item?.quantity}
+                name={item?.name}
+                onIncreaseClicked={onIncreaseClicked}
+                onDecreaseClicked={onDecreaseClicked}
+                removeItem={removeItem}
+              />
+            ))}
           </div>
-        )}
-      </div>
+
+          {cart?.length !== 0 && (
+            <div className="cart-summary-container">
+              <h4 className="summary-header">Order Summary</h4>
+
+              <div>
+                <div>Sub Total</div>
+                <div>${subTotal.toFixed(2)}</div>
+              </div>
+              <div className="taxes">
+                <div>Tax</div>
+                <div>{tax?.toFixed(2)}</div>
+              </div>
+              <div className="shipping">
+                <div>Shipping Cost</div>
+                <div>${shipping?.toFixed(2)}</div>
+              </div>
+              <div className="total-cost">
+                <h4>Total Price</h4>
+                <h4>${grandTotal?.toFixed(2)}</h4>
+              </div>
+
+              <button type="button"
+                onClick={handleCheckout}
+                className="checkout-btn"
+              >
+                Checkout
+              </button>
+            </div>
+          )}
+        </div>
+      }
     </div>
   )
 }
 
 
-function CartItem({ id, name, price, quantity, image, onIncreaseClicked, onDecreaseClicked, removeItem }) {
+function CartItem({ id, name, price, quantity, image, onIncreaseClicked, onDecreaseClicked, removeItem, width }) {
 
   return (
     <div key={id} className="item-row-container">
+
+      <div className="cart-item-image-frame">
+        <img src={image} />
+      </div>
 
       <div className="item-name">
         <div>{name}</div>
         <div>${price?.toFixed(2)}</div>
       </div>
+
       <div className="quantity-btn">
-        <button
-          onClick={() => { onIncreaseClicked(id) }}
-          className="add">
-          +
-        </button>
-        <div className="item-quantity">
-          <span>qty</span>  {quantity}
-        </div>
         <button
           onClick={() => {
             if (quantity == 1) {
@@ -228,10 +276,26 @@ function CartItem({ id, name, price, quantity, image, onIncreaseClicked, onDecre
           className="remove">
           -
         </button>
+        <div className="item-quantity">
+          <span>qty</span>  {quantity}
+        </div>
+
+        <button
+          onClick={() => { onIncreaseClicked(id) }}
+          className="add">
+          +
+        </button>
       </div>
 
-      <div className="item-price">
-        ${(price * quantity).toFixed(2)}
+      <div className="right-side">
+        <div className="item-price">
+          ${(price * quantity).toFixed(2)}
+        </div>
+        <button onClick={() => {
+          removeItem(id)
+        }}>
+          <FontAwesomeIcon icon={faTrash} /> Remove
+        </button>
       </div>
     </div>
   )

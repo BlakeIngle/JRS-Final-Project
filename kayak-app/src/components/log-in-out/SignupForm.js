@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useApi } from '../../services/axios.service'
 import { useLocalStorage } from '../../services/localStorage.service';
-import '../log-in-out/SignupForm.css'
+import '../log-in-out/LoginForm.css'
 
 export default function SignUpPage() {
 

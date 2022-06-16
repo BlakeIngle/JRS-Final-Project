@@ -40,11 +40,23 @@
   text-align: center;
 
 }
+.product-info .image-frame {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 11em;
+  width: 8em;
+  margin: auto;
+}
 
 .image {
-  height: 8em;
+
+  max-width: 100%;
+  height: auto;
   width: fit-content;
   overflow: hidden;
+  display: block;
+  margin: auto;
 
 }
 
@@ -56,12 +68,12 @@
 
 .add-button {
   display: inline-block;
-  border: none;
+  border: solid white 1px;
   border-radius: 4px;
   z-index: 1;
   
-  color: white;
-  background-color: var(--blue);
+  color: black;
+  background-color: var(--yellow);
   text-align: center;
   font-weight: bold;
   font-size: 20px;
@@ -85,7 +97,8 @@
 }
 
 .add-button:hover {
-  background-color: var(--darkYellow);
-  color: var(--blue);
+  background-color: var(--blue);
+  color: var(--yellow);
+  border: solid var(--yellow) 1px;
   
 }

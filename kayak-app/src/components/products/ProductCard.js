@@ -49,18 +49,20 @@ export default function ProductCard({ id, name, price, brand, color, style, desc
             <div className='product-info'>
                 <Link to={`/products/${id}`}>
 
-                    <img className='image' src={image} />
+                    <div className="image-frame">
+                        <img className='image' src={image} />
+                    </div>
                     <h4 className='product-name'>{name}</h4>
                     <h4 className='brand'>{brand}</h4>
                     <h4 className='price'>${price}</h4>
 
-                    <button
-                        onClick={user ? addItemToCart : requestUserLogin}
-                        className='add-button'
-                    >
-                        <span> Add to Cart</span>
-                    </button>
                 </Link>
+                <button
+                    onClick={user ? addItemToCart : requestUserLogin}
+                    className='add-button'
+                >
+                    <span> Add to Cart</span>
+                </button>
             </div>
 
         </div>

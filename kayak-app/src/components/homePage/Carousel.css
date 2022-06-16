@@ -1,0 +1,13 @@
+
+
+.carousel-root {
+    margin: auto;
+}
+
+
+.carousel-root img {
+    object-fit: cover;
+    width: 100%;
+}
+
+

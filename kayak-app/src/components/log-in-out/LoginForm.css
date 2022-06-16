@@ -1,4 +1,5 @@
-.login-root {
+.login-root,
+.signup-root  {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,15 +11,14 @@
     height: 25em;
     border-radius: 5px;
     margin: auto;
-    margin-top: 7em;
+    margin-top: 5em;
     font-size: x-large;
-
 }
 
 
 .input-form-root>hr {
     width: 15em;
-    border: solid var(--yellow) 1px;
+    border: solid var(--blue) 1px;
 }
 
 .input-form-root>input {
@@ -32,8 +32,25 @@
     text-align: center;
     font-size: inherit;
 
-    color: var(--yellow);
-    background-color: hsl(178, 61%, 45%);
+    color: var(--blue);
+}
+
+.input-form-root input:-webkit-autofill:hover, 
+.input-form-root input:-webkit-autofill,
+.input-form-root input:-webkit-autofill:focus, 
+.input-form-root input:-webkit-autofill:active{
+    box-shadow: 0 0 0 40px  white inset !important;
+    transition: none;
+}
+
+/*Change text in autofill textbox*/
+.input-form-root input:-webkit-autofill{
+    -webkit-text-fill-color: var(--blue) !important;
+
+}
+
+.input-form-root input::selection {
+    background: var(--blue); /* WebKit/Blink Browsers */
 }
 
 .input-form-root>input:focus {
@@ -44,7 +61,7 @@
 }
 
 .input-form-root>input:hover {
-    background-color: hsl(178, 61%, 55%);
+    /* background-color: hsl(178, 61%, 55%); */
 }
 
 
@@ -65,7 +82,7 @@
 .login-root .signup-btn,
 .login-root .login-btn {
     color: var(--blue);
-    background-color: var(--yellow);
+    background-color: var(--darkYellow);
     font-weight: bold;
     font-size: inherit;
 
@@ -78,12 +95,12 @@
     border-radius: 3px;
 }
 
-.login-root .signup-btn:hover,
-.login-root .login-btn:hover {
+
+.signup-root .login-btn:hover,
+.signup-root .signup-btn:hover {
+    cursor: pointer;
     background-color: var(--darkYellow);
+    box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+
 }
 
-
-.login-root .login-btn {
-    /* border-bottom: solid var(--yellow) 1px; */
-}

@@ -109,7 +109,7 @@ function App() {
   useEffect(() => {
     console.log("app initialized");
     getProducts();
-    let localCart = localStorage.getItem("cart");
+    var localCart = localStorage.getItem("cart");
 
     // //turn it into js
     // console.log(localCart);
@@ -133,8 +133,6 @@ function App() {
               <Route path="/" element={<Homepage />} />
               <Route path="/products" element={<ProductPage />} />
               <Route path="/login" element={<LoginForm />} />
-              {/* <Route path="/user" element={<UserPage />} /> */}
-              {/* <Route path="/product/:id" element={<ProductCard />} /> */}
               <Route path="/products/:id" element={<ProductDetails />} />
               <Route path="/products/style/:style" element={<ProductPage />} />
               <Route path="/products/category/:category" element={<ProductPage />} />
