@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router';
 import { useApi } from '../../services/axios.service';
 import { Link } from 'react-router-dom';
 import { useLocalStorage } from '../../services/localStorage.service';
+import Toast from '../../services/toasts/Toast';
+import ToastMessenger, { useToasts } from '../../services/toasts/toastService';
+import '../../services/toasts/Toast.css'
 import '../log-in-out/LoginForm.css';
 
 export default function LogInPage() {
@@ -36,15 +39,25 @@ function LogInForm() {
   const animationTime = 300;
   const http = useApi();
   const localStorageService = useLocalStorage()
+  const toasts = useToasts();
 
+/**
+ * user input is empty upon 
+ * initial rendering
+ */
   const [user, setUser] = useState({
     email: '',
     password: ''
   });
 
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
 
+  /**
+   * 
+   * @param {input} e 
+   * Tracks the value of the 
+   * text inputs and sets the 
+   * user values to the input values 
+   */
   function handleChange(e) {
     var name = e.target.name;
     var value = e.target.value;
@@ -55,6 +68,13 @@ function LogInForm() {
     });
   }
 
+  /**
+   * 
+   * @param {input} e 
+   * On submit check if the 
+   * email and password field
+   * are defined then attempt login
+   */
   function handleSubmit(e) {
     e.preventDefault();
     if (user.email && user.password) {
@@ -62,19 +82,12 @@ function LogInForm() {
         .then(res => {
           const user = res.data.user;
           localStorageService.saveUser(user);
-          navigate(`/`);
+          toasts.success("Logged in successfully")
+          navigate(`/products`);
         }).catch(err => {
           console.error(err)
-
-          emailRef.current.classList.add("shake");
-          passwordRef.current.classList.add("shake");
-
+          toasts.error("Email or Password was incorrect")
           setUser({ email: '', password: '' });
-
-          setTimeout(() => {
-            emailRef.current.classList.remove("shake");
-            passwordRef.current.classList.remove("shake");
-          }, animationTime);
         });
     }
   }

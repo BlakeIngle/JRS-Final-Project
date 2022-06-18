@@ -10,39 +10,48 @@ export default function OrderSuccess() {
   const [items, setItems] = useState([]);
   const http = useApi();
 
+  /**
+   * This functions gets all products purchased by 
+   * transaction id and returns an array of product
+   * ojects
+   */
   function getItemsPurchasedByTransactionId() {
     http.getItemsPurchasedByTransactionId(transactionId)
       .then((response) => {
-        console.log("you're in the order confirm page server response ")
-        console.log(response)
         setItems(response.data.items);
       })
       .catch(() => {
-        console.log("error getting all")
+        console.error("error getting all")
       })
   }
 
+  /**
+   * This function gets a single transaction by
+   * a single transaction Id and returns 
+   * an array of products purchased by transaction id
+   */
   function getTransactionData() {
     http.getTransactionById(transactionId)
       .then((response) => {
-        console.log(response)
         response.data.transaction.date = new Date(response.data.transaction.date);
         setOrder(response.data.transaction);
       })
       .catch(() => {
-        console.log("error getting transaction data")
+        console.error("error getting transaction data")
       })
   }
 
+  /**
+   * on initialization, gets all transations with
+   * the transaction id, then gets all items
+   * purchased with that transaction id
+   * and renders the page with those purchased
+   * items
+   */
   useEffect(() => {
-    console.log("im in the useEffect function")
     getTransactionData();
     getItemsPurchasedByTransactionId();
-  }, []);
-
-  useEffect(() => {
-    console.log(order)
-  }, [order])
+  }, [order]);
 
   return (
     <div className="order-root">
@@ -83,7 +92,7 @@ export default function OrderSuccess() {
         </div>
 
         {items.map((item) => (
-          <div className="order-detail-root "
+          <div className="order-detail-root"
             key={item.id}>
             <div className="order-display">
 
@@ -92,11 +101,9 @@ export default function OrderSuccess() {
               </div>
 
               <div className="order-data-root">
-                {/* <div className="order-display-id"> Product ID: {item.id}</div> */}
                 <div className="order-display-name"> Name: <span className="bold">{item.name} </span></div>
                 <div className="order-display-brand"> Brand:  <span className="bold">{item.brand}</span></div>
                 <div className="order-display-color"> Color:<span className="bold"> {item.color}</span></div>
-                {/* <div className="order-display-total"> Total Price: ${item.total} </div> */}
               </div>
 
               <div className="order-display-quantity">

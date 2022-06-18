@@ -1,17 +1,27 @@
 import React, { useContext } from 'react';
-import '../products/ProductCard.css';
 import { useApi } from '../../services/axios.service';
 import { useLocalStorage } from '../../services/localStorage.service';
 import { Context } from '../../App';
 import { Link } from 'react-router-dom';
+import Toast from '../../services/toasts/Toast';
+import ToastMessenger, { useToasts } from '../../services/toasts/toastService';
+import '../../services/toasts/Toast.css'
+import '../products/ProductCard.css';
 
 export default function ProductCard({ id, name, price, brand, color, style, description, image, rating, quantity, product_id, customer_id, total }) {
 
     const { addItem } = useContext(Context)
     const http = useApi();
     const ls = useLocalStorage();
+    const toasts = useToasts();
     let user = ls.getUser();
 
+
+    /**
+     * This functions adds all the 
+     * necessary properties of an 
+     * individual item, to the local cart
+     */
     function addItemToCart() {
         addItem({
             id,
@@ -24,23 +34,15 @@ export default function ProductCard({ id, name, price, brand, color, style, desc
             image,
             quantity
         })
-
-        // if (user) {
-        //     http.addItemToCart(user.id, id, price)
-        //         .then(results => {
-        //             console.log(results);
-        //             // maybe make a little toast message or something
-        //         })
-        //         .catch(error => {
-        //             console.log(error.response);
-        //         });
-        // } else {
-        //     console.log('no user')
-        // }
     }
 
+    /**
+     * This functions runs when a user is not
+     * logged in and attempts to add to cart
+     */
     function requestUserLogin() {
-        window.alert("Please Log In To Add Item to Cart")
+        toasts.success("Please Login or Signup to add items to cart")
+
     }
 
     return (

@@ -7,6 +7,12 @@ export default function Search({ onSubmit, onChange }) {
 
   const [searchQuery, setSearchQuery] = useState('');
 
+  /**
+   * 
+   * @param {input} e 
+   * @returns searchQuery as a string
+   * 
+   */
   function handleFormSubmit(e) {
     e.preventDefault();
     if (onSubmit) {

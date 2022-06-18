@@ -14,13 +14,20 @@ function ProductPage() {
   const [products, setProducts] = useState([]);
   const ls = useLocalStorage();
   let user = ls.getUser();
-  let { category, style } = useParams();
+  let { category, style, size } = useParams();
   const http = useApi();
   const navigate = useNavigate();
 
 
+  /**
+   * This function will get all products
+   * unless a category, style, or size are 
+   * provided/defined. In which case it will 
+   * return all products based on the value 
+   * provided
+   */
   function getProducts() {
-    if (!category && !style) {
+    if (!category && !style && !size) {
       http.getAllProducts()
         .then((response) => {
           setProducts(response.data.products);
@@ -29,24 +36,31 @@ function ProductPage() {
           console.error("error getting all products");
           navigate('*')
         })
-    } else if (category && !style) {
+    } else if (category && !style && !size) {
       http.getProductsByCategory(category)
         .then((response) => {
-          console.log(response)
           setProducts(response.data.products);
         })
         .catch(() => {
           console.error("error getting category:", category);
           navigate('*')
         })
-    } else if (style && !category) {
+    } else if (style && !category && !size) {
       http.getProductsByStyle(style)
         .then((response) => {
-          console.log(response)
           setProducts(response.data.products);
         })
         .catch(() => {
           console.error("error getting style:", style);
+          navigate('*')
+        })
+    } else if (size && !category && !style) {
+      http.getProductsBySize(size)
+        .then((response) => {
+          setProducts(response.data.products);
+        })
+        .catch(() => {
+          console.error("error getting size:", size);
           navigate('*')
         })
     } else {
@@ -55,32 +69,12 @@ function ProductPage() {
     }
   }
 
-
-
-  // This was copied from a colleague  and is not implemented anywhere.
-  function checkIfProductContainsKeyword(product, keyword) {
-    // search all products to see if any of them match the given keyword
-    for (let i = 1; i < 16; i++) {
-
-      // if there is another value, check it, 
-      //   else (undefinded), do not check it. That would be an error
-      let _keyword = product["strKeyword" + [i]]
-      if (!_keyword) {
-        return false
-      }
-
-      if (hasSubstringCaseInsensitive(_keyword, product)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   /**
- * This was copied from a colleague, not sure how or where to
- * implement this, so its just here
+ * 
  * @param {string} longString 
- * @param {string} subString 
+ * @param {string} subString
+ * This function removes all punctuation
+ * within the search query or object property value 
  */
   function hasSubstringCaseInsensitive(longString, subString) {
 
@@ -97,58 +91,75 @@ function ProductPage() {
     return longString.includes(subString)
   }
 
+  /**
+   * 
+   * @param {string} newQuery 
+   * Sets the search query to the value,
+   * of the new query
+   */
   function onInputChanged(newQuery) {
-    console.log(newQuery);
     setSearchQuery(newQuery)
   }
 
+  /**
+   * Renders the page with the apprpriate
+   * products based on the values provided
+   * or not provided (category, style, size & query)
+   */
   useEffect(() => {
     getProducts();
 
-  }, [category, style, searchQuery]);
+  }, [category, style, searchQuery, size]);
 
-  // function doesItemMatchSearchQuery(product) {
-  //   let {name, color, brand, category, size, style, price} = product
-
-
-
-  // }
-
+  /**
+   * 
+   * @param {object} product 
+   * @returns boolean
+   * This function checks to see if the 
+   * search query substring is included within 
+   * the values of the object properties
+   */
+  function doesItemMatchSearchQuery(product) {
+    let { name, color, brand, category, size, style } = product
+    if (hasSubstringCaseInsensitive(name, searchQuery)) {
+      return true;
+    } else if (hasSubstringCaseInsensitive(brand, searchQuery)) {
+      return true;
+    } else if (hasSubstringCaseInsensitive(color, searchQuery)) {
+      return true
+    } else if (hasSubstringCaseInsensitive(category, searchQuery)) {
+      return true
+    } else if (hasSubstringCaseInsensitive(size, searchQuery)) {
+      return true
+    } else if (hasSubstringCaseInsensitive(style, searchQuery)) {
+      return true
+    } else {
+      return false;
+    }
+  }
 
   return (
 
     <div className="products-root">
-
       <h1 className='header'>
         SUMMER STARTS HERE!
       </h1>
+
       <div className="search-bar-container">
-
         <Search onChange={onInputChanged} />
-
-        {/* {category ? category.toUpperCase() : ''} */}
-
       </div>
 
       <div className="products-container">
 
-        {/* {products.map(product => <ProductCard key={product.id} {...product} />)} */}
-
-
         {products.filter(product => {
           if (searchQuery == '') {
             return true
-
           }
-          else {
-            const searchKeyword = searchQuery.toLowerCase()
-            return product.name.toLowerCase().includes(searchKeyword)
-          }
+          return doesItemMatchSearchQuery(product)
         })
           .map(product => <ProductCard key={product.id} {...product} />)}
 
       </div>
-
     </div>
   );
 }

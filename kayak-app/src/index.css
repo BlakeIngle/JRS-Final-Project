@@ -1,8 +1,7 @@
 html,
 body {
-  background-color: white;
+  background-color: var(--yellow);
 }
-
 
 body {
 

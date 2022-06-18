@@ -1,15 +1,17 @@
 .order-root {
     background-color: var(--blue);
-    /* margin: 3.5em; */
+
+    height: 40em;
     padding: 2em;
-    border-radius: 10px;
-    height: fit-content;
+
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 
 .order-root .order-page-content {
     background-color: white;
-    padding: 2em;
+
     border-radius: 10px;
 }
 
@@ -19,18 +21,27 @@
 }
 
 .order-status-root {
-    border-radius: 10px;
-    background-color: var(--yellow);
     padding: 1em;
+    border-radius: 10px;
+
+    background-color: var(--yellow);
 }
 
 .order-detail-root .order-display {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: 2em;
-    margin-top: 2em;
+    align-items: center;
+
     width: 100%;
+    margin-top: 1em;
+    padding: 1em;
+}
+
+.order-detail-root .order-display .order-data-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 .order-detail-root .order-data-root {
@@ -40,6 +51,7 @@
 .order-detail-root .order-display .order-display-quantity {
     display: flex;
     flex-direction: column;
+    flex-grow: 2;
 }
 
 .order-detail-root .order-display .order-data-root {
@@ -50,23 +62,35 @@
     font-weight: bold;
 }
 
+.order-root .product-image-frame {
+    display: flex;
+    justify-content: center;
+
+    margin: auto;
+    height: 11em;
+    width: 9em;
+}
+
 .order-root .product-image-frame img {
-    width: 8em;
-    height: 6em;
-    border-radius: 10px;
-    margin: 1em;
+    height: auto;
+    width: 100%;
+    
+    display: block;
 }
 
 .order-root .order-status-success {
     color: white;
-    font-size: 30pt;
-    padding: 0;
-    margin-top: 0;
 
+    font-size: 30pt;
+
+    margin-top: 0;
+    padding: 0;
 }
 
 .order-status-root .order-number {
     text-align: left;
+    font-size: small;
+
     margin-top: 2em;
 }
 
@@ -86,8 +110,7 @@
     text-align: right;
 }
 
-.order-page-content .order-status-root .order-header .grand-total h2{
-margin: 0;
-margin-left: .25em;
-
+.order-page-content .order-status-root .order-header .grand-total h2 {
+    margin: 0;
+    margin-left: .25em;
 }

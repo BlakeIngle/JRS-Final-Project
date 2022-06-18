@@ -2,8 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useApi } from '../../services/axios.service';
 import { useLocalStorage } from '../../services/localStorage.service';
 import { Context } from '../../App';
-import '../products/ProductDetails.css'
 import { useParams } from 'react-router-dom';
+import Toast from '../../services/toasts/Toast';
+import ToastMessenger, { useToasts } from '../../services/toasts/toastService';
+import '../../services/toasts/Toast.css'
+import '../products/ProductDetails.css'
 
 
 export default function ProductDetails({ name, price, brand, color, style, description, image, rating, quantity, product_id, customer_id, total }) {
@@ -11,28 +14,35 @@ export default function ProductDetails({ name, price, brand, color, style, descr
   const { addItem } = useContext(Context)
   const http = useApi();
   const ls = useLocalStorage();
+  const [product, setProduct] = useState([])
+  const toasts = useToasts();
   let user = ls.getUser();
   let { id } = useParams();
-  const [product, setProduct] = useState([])
 
 
-
+/**
+ * This functions will get a single 
+ * product by its product id
+ */
   function getSingleProduct() {
     if (id) {
       http.getProductsById(id)
         .then((response) => {
-          console.log(response)
           setProduct(response.data.products[0])
         })
         .catch(() => {
-          console.log("error getting product by ID");
+          console.error("error getting product by ID");
         })
     } else {
-
       console.error("Product ID is not defined", id)
     }
   }
 
+   /**
+     * This functions adds all the 
+     * necessary properties of an 
+     * individual item, to the local cart
+     */
   function addItemToCart() {
     addItem({
       id,
@@ -47,11 +57,19 @@ export default function ProductDetails({ name, price, brand, color, style, descr
     })
   }
 
+  /**
+     * This functions runs when a user is not
+     * logged in and attempts to add to cart
+     */
   function requestUserLogin() {
-    window.alert("Please Log In To Add Item to Cart")
+    toasts.success("Please Login or Signup to add items to cart")
   }
 
-
+  /**
+   * renders page once with data from
+   * a single product based on its
+   * product id
+   */
   useEffect(() => {
     getSingleProduct();
 
@@ -60,7 +78,9 @@ export default function ProductDetails({ name, price, brand, color, style, descr
   return (
     <div className="product-details-root">
       <div className='product-container'>
-        <img className='image' src={product?.image} />
+        <div className='image-container'>
+          <img src={product?.image} />
+        </div>
 
         <div className="product-details-container">
           <h4 className='product-name'><b>{product?.name}</b></h4>
@@ -72,7 +92,7 @@ export default function ProductDetails({ name, price, brand, color, style, descr
             <p>Most customers receive <br></br>within <b>2-3 days</b></p>
           </div>
 
-          <p>{product?.description}</p>
+          <p className="description">{product?.description}</p>
         </div>
 
 

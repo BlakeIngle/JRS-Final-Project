@@ -5,6 +5,5 @@ module.exports = (app) => {
     app.post('/api/users/login', users.login);
 
     app.delete('/api/users/:id', users.deleteUserById);
-
 }
 

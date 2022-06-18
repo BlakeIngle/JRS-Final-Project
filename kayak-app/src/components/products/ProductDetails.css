@@ -11,28 +11,33 @@
     display: flex;
     justify-content: space-between;
     background-color: white;
-    padding: 1em;
     border-radius: 10px;
     padding: 2em;
-    /* box-shadow: 0 10px 20px rgb(0 0 0 / 10%); */
+}
 
+.product-details-root .product-container .image-container {
+    display: flex;
+    justify-content: center;
+    height: 14em;
+    width: 18em;
+    margin: auto;
 }
 
 .product-details-root .product-container img {
-    margin-top: 5em;
-    margin-right: 1em;
-    width: min-content;
+    height: auto;
+    width: auto;
+
+    display: block;
 }
 
 .product-details-root .product-price-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
+
     border-radius: 10px;
-    /* border: solid var(--yellow) 2px; */
     margin-left: 1em;
     padding: 1em;
-
 
     color: white;
     background-color: var(--blue);
@@ -40,16 +45,80 @@
 }
 
 .product-details-root .product-price-container button {
-    color: var(--blue);
+    color: white;
     background-color: var(--yellow);
+    border: solid var(--yellow) 2px;
 }
 
+.product-details-root .product-price-container button:hover {
+    color: var(--yellow);
+    background-color: var(--blue);
+}
+
+.product-details-root .product-price-container {
+    flex-grow: 1;
+}
+
+.product-details-root .product-details-container {
+    flex-grow: 2;
+
+    margin-left: .5em;
+}
+
+.product-details-root .product-details-container .description {
+    display: flex;
+
+    margin: auto;
+    width: 11.5em;
+    padding-top: 1em;
+
+    text-align: left;
+}
+
+.product-details-root .product-details-container .brand {
+    margin-bottom: .5em;
+}
 
 .product-details-root .product-details-container .shipping-disclosure {
+    display: inline-block;
+    justify-content: center;
     text-align: left;
-    padding-left: 3em;
+
     padding-top: 1em;
+    padding-bottom: 1em;
 
     border-top: solid var(--blue) 1px;
     border-bottom: solid var(--blue) 1px;
+}
+
+.product-details-root .product-details-container .shipping-disclosure p {
+    margin: .25em;
+    margin-left: 0;
+
+}
+
+@media screen and (max-width: 650px) {
+
+    .product-details-root .product-container {
+        flex-direction: column;
+    }
+
+    .product-details-root .product-container .image-container {
+        width: 5em;
+    }
+
+    .product-details-root .product-container img {
+        height: 100%;
+    }
+
+    .product-details-root .product-price-container {
+        margin-top: 1em;
+    }
+
+    .product-details-root .product-price-container button {
+        margin: auto;
+        width: fit-content;
+
+        color: black;
+    }
 }

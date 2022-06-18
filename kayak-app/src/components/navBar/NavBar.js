@@ -4,11 +4,10 @@ import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faShoppingCart, faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 import '../navBar/NavBar.css'
-import Search from './Search';
 import BurgerMenu from './BurgerMenu';
 import { useLocalStorage } from '../../services/localStorage.service';
 import { Context } from '../../App';
-
+import FloatNPaddleLogo from '/Users/tommyzwick/GIT/JRS-Final-Project/kayak-app/src/images/FloatNPaddleLogo.png';
 
 export default function () {
 
@@ -21,10 +20,14 @@ export default function () {
   const location = useLocation();
 
 
-
+  /**
+   * userBtn contains the html for 
+   * the User Icon and functionality
+   * when user is logged in
+   */
   const userBtn = (
     <div className="user-logged-in user-hoverable-container">
-      <Link to="" >
+      <Link to="/purchases" >
         <FontAwesomeIcon size="lg" icon={faUser} />
       </Link>
 
@@ -38,15 +41,19 @@ export default function () {
         <div className="option-two" onClick={() => {
           ls.removeUser()
         }}>
-          <Link to="">
+          <Link to="/products">
             Log out
           </Link>
         </div>
-      </div>
 
+      </div>
     </div>
   )
 
+  /**
+   * loginSignupBtn contains the user icon and 
+   * functionality when user is not logged in
+   */
   const loginSignupBtn = (
     <div className="login-signup">
       <Link to="/login" >
@@ -55,11 +62,17 @@ export default function () {
     </div>
   )
 
-  // This variable is needed to calculate the quantity
-  // of items within the local storage shopping cart 
-  // within the totalCartQty below
+  /**
+   * cartSum is needed to calculate the quantity
+   * of items within the local storage shopping cart 
+   * within the totalCartQty below
+   */
   var cartSum = 0;
-
+/**
+ * 
+ * @param {number} cartSum 
+ * @returns quantity of items in local cart
+ */
   function totalCartQty(cartSum) {
 
     for (let item of cart) {
@@ -70,16 +83,20 @@ export default function () {
   }
 
 
-
+/**
+ * Checks the local cart qty and 
+ * window size on initialization.
+ * Re-renders page and checks same values,
+ * everytime the window size updates, 
+ * the local cart or its qty updates,
+ * or the location of the route
+ */
   useEffect(() => {
 
     totalCartQty(cartSum)
-
-
     setIsHidden(true);
 
     function handleResize() {
-
       setWidth(window.innerWidth)
     }
 
@@ -106,11 +123,16 @@ export default function () {
                 :
                 <FontAwesomeIcon size="lg" icon={faXmark} />
               }
-
             </span>
           </div>
         </>
       ) : ""}
+
+      <div className="logo-container">
+        <Link to="/products">
+          <img className="logo-image" src={FloatNPaddleLogo} />
+        </Link>
+      </div>
 
       {true && width >= 970 ? (<div className="product-links">
 
@@ -120,7 +142,6 @@ export default function () {
         </Link>
 
         <div className="hoverable-container">
-
           <Link
             to="/products/category/kayaks">
             Kayaks
@@ -138,9 +159,7 @@ export default function () {
                 Sit-on-top
               </Link>
             </div>
-
           </div>
-
         </div>
 
         <Link
@@ -151,19 +170,19 @@ export default function () {
         <div className="hoverable-container">
           <Link
             to="/products/category/PFDs">
-            PFDs
+            Life Jackets
           </Link>
 
           <div className="hidden-menu">
             <div className="option-one">
-              <Link to="/products/size/kids">
-                Kids
+              <Link to="/products/size/youth">
+                Youth
               </Link>
             </div>
 
             <div className="option-two">
-              <Link to="/products/size/adult">
-                Adult
+              <Link to="/products/size/adults">
+                Adults
               </Link>
             </div>
           </div>
@@ -193,12 +212,6 @@ export default function () {
         </div>
 
       </div>) : ""}
-
-      {/* {true && width <= 970 ? (<div className="searchBar">
-        <Search />
-      </div>) : ""} */}
-
-      {/* <h1>Modern Paddle</h1> */}
 
       <div className="user-stuff">
         <div>

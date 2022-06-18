@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React, { createContext, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -11,13 +11,9 @@ import PageNotFound from './components/pageNotFound/PageNotFound'
 import LoginForm from './components/log-in-out/LoginForm'
 import SignupForm from './components/log-in-out/SignupForm'
 import NavBar from './components/navBar/NavBar'
-import ProductCard from './components/products/ProductCard';
 import { useApi } from './services/axios.service';
 import ProductPage from './components/products/ProductPage';
-import LogoutForm from './components/log-in-out/UserPage';
-import UserPage from './components/log-in-out/UserPage';
 import ProductDetails from './components/products/ProductDetails';
-import BurgerMenu from './components/navBar/BurgerMenu';
 
 export const Context = createContext(null);
 
@@ -49,7 +45,7 @@ function App() {
     setCart(cartCopy)
     let stringCart = JSON.stringify(cartCopy);
     localStorage.setItem("cart", stringCart)
-    
+
   }
 
   const increaseQty = (itemId) => {
@@ -79,10 +75,10 @@ function App() {
   }
 
   const clearCart = () => {
-    
+
     setCart([]);
-    
-    localStorage.removeItem('cart' );
+
+    localStorage.removeItem('cart');
   }
 
   const removeItem = (itemId) => {
@@ -102,22 +98,17 @@ function App() {
         setProducts(response.data.products);
       })
       .catch(() => {
-        console.log("error getting all")
+        console.error("error getting all")
       })
   }
 
   useEffect(() => {
-    console.log("app initialized");
     getProducts();
     var localCart = localStorage.getItem("cart");
-
-    // //turn it into js
-    // console.log(localCart);
 
     //load persisted cart into state if it exists
     if (localCart) {
       localCart = JSON.parse(localCart);
-      console.log(localCart);
       setCart(localCart)
     }
   }, []) //the empty array ensures useEffect only runs once
@@ -131,17 +122,18 @@ function App() {
             <NavBar />
             <Routes>
               <Route path="/" element={<Homepage />} />
-              <Route path="/products" element={<ProductPage />} />
-              <Route path="/login" element={<LoginForm />} />
-              <Route path="/products/:id" element={<ProductDetails />} />
-              <Route path="/products/style/:style" element={<ProductPage />} />
-              <Route path="/products/category/:category" element={<ProductPage />} />
-              <Route path="/products/search/:query" element={<ProductPage />} />
-              <Route path="/signup" element={<SignupForm />} />
-              <Route path="/cart" element={<ShoppingCart />} />
-              <Route path="/ordersuccess/:transactionId" element={<OrderSuccess />} />
-              <Route path="/purchases" element={<PastOrders />} />
               <Route path="*" element={<PageNotFound />} />
+              <Route path="/cart" element={<ShoppingCart />} />
+              <Route path="/login" element={<LoginForm />} />
+              <Route path="/signup" element={<SignupForm />} />
+              <Route path="/products" element={<ProductPage />} />
+              <Route path="/purchases" element={<PastOrders />} />
+              <Route path="/products/:id" element={<ProductDetails />} />
+              <Route path="/products/size/:size" element={<ProductPage />} />
+              <Route path="/products/style/:style" element={<ProductPage />} />
+              <Route path="/products/search/:query" element={<ProductPage />} />
+              <Route path="/products/category/:category" element={<ProductPage />} />
+              <Route path="/ordersuccess/:transactionId" element={<OrderSuccess />} />
             </Routes>
           </BrowserRouter>
         </ToastProvider>

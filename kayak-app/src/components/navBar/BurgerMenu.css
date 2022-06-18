@@ -1,46 +1,32 @@
 .burger-menu-container {
     position: fixed;
-    padding-top: 3em;
-    inset: 0;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-evenly; */
+
+    margin-top: 1em;
+    padding-top: 3em;
+    inset: 0;
     z-index: 2;
 
     background-color: var(--blue);
-
-    /* animation: slide-down-top .5s; */
-   
 }
 
 .burger-menu-container a,
 .burger-menu-container .hoverable-container {
-    padding-top: 1.5em;
     font-size: 25pt;
-    height: 100%;
     color: var(--yellow);
+
+    padding-top: 1.5em;
+    height: 100%;
+
     text-decoration: none;
 
     border-bottom: solid var(--yellow) 1px;
 }
 
-.burger-menu-container a {
-
-}
-
 .burger-menu-container>a:hover {
     color: var(--blue);
     background-color: var(--yellow);
-}
-
-@keyframes slide-down-top {
-    from {
-        transform: translateY(-100%),
-        
-    }
-    to{
-        transform: translateY(0);
-    }
 }
 
 

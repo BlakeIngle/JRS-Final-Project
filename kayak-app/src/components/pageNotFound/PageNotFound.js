@@ -16,8 +16,6 @@ export default function PageNotFound() {
       </div>
 
       <div>
-
-
         <b>
           The tour guide got lost!
         </b>

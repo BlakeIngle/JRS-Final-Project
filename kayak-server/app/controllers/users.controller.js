@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const { v4: uuid } = require('uuid');
 
-
+// logs the user in, based on the users
+// within the kayaks DB
 exports.login = (req, res) => {
     console.log(req.body)
     let { email, password } = req.body;
@@ -60,6 +61,8 @@ exports.login = (req, res) => {
     });
 }
 
+// Inserts a new user into the users table
+// within the kayaks DB
 exports.createNewUser = async (req, res) => {
 
     let { email, password } = req.body;
@@ -108,6 +111,8 @@ exports.createNewUser = async (req, res) => {
     });
 }
 
+// Deletes a user in the users table
+// within the kayaks DB
 exports.deleteUserById = (req, res) => {
 
     let { id } = req.params;

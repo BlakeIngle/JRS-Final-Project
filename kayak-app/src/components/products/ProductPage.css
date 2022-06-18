@@ -1,23 +1,23 @@
 .products-root {
   overflow: auto;
-  /* background-color: var(--yellow); */
+
   text-align: center;
 }
 
 .products-root .search-bar-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  
-  background-color: var(--blue);
-
-  /* height: 4em; */
-  max-width: 1085px;
-  margin: auto;
-
+  gap: .25em;
 
   color: var(--yellow);
-  font-size: 24pt;
+  background-color: var(--blue);
+
+  margin: auto;
+  max-width: 1085px;
   padding: 1em;
+
+  font-size: 24pt;
   font-weight: bold;
 }
 
@@ -34,7 +34,9 @@
 }
 
 .products-root .header {
-  color: white;
-  background-color: var(--blue);
+  color: var(--blue);
+  background-color: var(--yellow);
+
+  margin: 0;
   padding: 1.5em 0 1.5em 0;
 }

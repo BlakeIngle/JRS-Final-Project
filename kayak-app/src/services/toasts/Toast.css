@@ -3,7 +3,7 @@
   top: 2rem;
   right: 0;
   /* //this is a last resort to put elements on top of things z index */
-  z-index: 2;
+  z-index: 100;
 }
 
 .toast-root {
@@ -43,11 +43,11 @@
 }
 
 .toast-button.success {
-  background-color: hsl(120, 70%, 34%);
+  background-color: var(--blue);
 }
 
 .toast-button.error {
-  background-color: hsl(0, 70%, 51%);
+  background-color: var(--yellow);
 }
 
 .toast-button.warning {
@@ -66,11 +66,13 @@
   text-align: left;
 }
 .toast-root.success {
-  --background-color: rgb(26, 146, 26);
+  color: var(--yellow);
+  --background-color: var(--blue);
 }
 
 .toast-root.error {
-  --background-color: rgb(217, 42, 42);
+  color: var(--yellow);
+  --background-color: black;
 }
 
 .toast-root.warning {

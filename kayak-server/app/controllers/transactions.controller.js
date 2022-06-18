@@ -1,6 +1,10 @@
 const db = require('../index');
 const { v4: uuid } = require('uuid')
 
+// Gets all products purchased, 
+// by transaction id from the purchased items table
+// and the transactions table
+// within the kayaks DB
 exports.getItemsPurchasedByTransactionId = (req, res) => {
 
     let tranId = req.params.transactionId;
@@ -40,6 +44,8 @@ exports.getItemsPurchasedByTransactionId = (req, res) => {
     });
 }
 
+// Gets all transactions by id from the transactions table 
+// within the kayaks DB
 exports.getTransactionById = (req, res) => {
 
     let tranId = req.params.transactionId;
@@ -70,6 +76,8 @@ exports.getTransactionById = (req, res) => {
     });
 }
 
+// Gets all transactions by customer id from the transactions table 
+// within the kayaks DB
 exports.getAllTransactionsByUserId = (req, res) => {
 
     let id = req.params.userId;
@@ -100,12 +108,8 @@ exports.getAllTransactionsByUserId = (req, res) => {
     });
 }
 
-/**
- * Checkout
- * @param {*} req 
- * @param {*} res 
- * @returns 
- */
+// Inserts a transaction within the transactions table
+// within the kayaks DB
 exports.createTransaction = (req, res) => {
 
     let { userId, total, products } = req.body;
@@ -143,6 +147,8 @@ exports.createTransaction = (req, res) => {
 
 }
 
+// Inserts purchased items in the purchased items table
+// within the kayaks DB
 function putItemsInDb(items, transactionId, res) {
     // transaction created
     // now post all items into the purchased_items table
@@ -164,9 +170,8 @@ function putItemsInDb(items, transactionId, res) {
     }
 
     db.query(query, placeholders, (err, results) => {
-        console.log('inserting items request done')
         if (err) {
-            console.log('inserting items request: error', err)
+            console.error('inserting items request: error', err)
 
             const query = `
                 DELETE FROM kayaks.transactions
@@ -194,18 +199,3 @@ function putItemsInDb(items, transactionId, res) {
         }
     });
 }
-
-// putting shopping cart into local storage. will not need the below code
-
-// function removeItemsFromUsersCart(userId) {
-
-//     const query = `
-//         DELETE FROM cart_items
-//         WHERE customer_id = ?;
-//     `;
-//     const placeholders = [userId];
-
-//     db.query(query, placeholders, (err, results) => {
-//         return;
-//     });
-// }

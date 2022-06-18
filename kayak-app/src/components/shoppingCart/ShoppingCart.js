@@ -15,17 +15,19 @@ export default function ShoppingCart() {
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth)
 
-
-  // const [products, setProducts] = useState([])
-  // const [cart, setCart] = useState([]);
-
   let user = ls.getUser();
-
   let subTotal = calculateTotalPrice(cart);
   const tax = .07 * subTotal;
   const shipping = 15.00;
   const grandTotal = subTotal + tax + shipping;
 
+  /**
+   * 
+   * @param {array} cart 
+   * @returns the total price of
+   * the cart based on the qty and 
+   * individual items price
+   */
   function calculateTotalPrice(cart) {
     let sum = 0;
 
@@ -36,89 +38,24 @@ export default function ShoppingCart() {
     return sum;
   }
 
-  function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-
-
-
-  // function getUserShoppingCart() {
-  //     if (user) {
-  //         http.getUserShoppingCartById(user.id)
-  //             .then((response) => {
-  //                 const watches = response?.data?.watches
-  //                 setCartItems(watches);
-  //             })
-  //             .catch(() => {
-  //                 console.log("error getting shopping cart")
-  //             })
-  //     } else {
-  //         console.log('not logged in');
-  //     }
-  // }
-
-  // function onDecrease(itemId, quantity) {
-  //     if (quantity <= 1) {
-  //         // maybe POP UP: 'Are you sure?'
-  //         http.deleteCartItem(itemId, user.id)
-  //             .then((response) => {
-
-  //                 setCartItems(cart.filter(
-  //                     (item) => item.id !== itemId));
-  //             })
-  //             .catch(() => {
-  //                 console.error("error deleting item")
-  //             })
-  //     } else {
-  //         http.decreaseQtyInCart(itemId, user.id)
-  //             .then((response) => {
-  //                 setCartItems(cart.map(item => {
-  //                     if (item.id == itemId) {
-  //                         return {
-  //                             ...item,
-  //                             quantity: item.quantity - 1
-  //                         }
-  //                     } else {
-  //                         return item;
-  //                     }
-  //                 }));
-  //             })
-  //             .catch(() => {
-  //                 console.error("error reducing quantity!")
-  //             })
-  //     }
-  // }
-
-  // function onIncrease(itemId) {
-  //     http.increaseQtyInCart(itemId, user.id)
-  //         .then((response) => {
-
-  //             setCartItems(cart.map(item => {
-  //                 if (item.id == itemId) {
-  //                     return {
-  //                         ...item,
-  //                         quantity: item.quantity + 1
-  //                     }
-  //                 } else {
-  //                     return item;
-  //                 }
-  //             }));
-  //         })
-  //         .catch(() => {
-  //             console.error("error increasing quantity!")
-  //         })
-
-  // }
-
+  /**
+   * 
+   * @param {string} itemId 
+   * decreases the qty of an item
+   * based on the individual items id
+   * within the local cart
+   */
   function onDecreaseClicked(itemId) {
     decreaseQty(itemId)
-    // .then((cart) => {
-    //   decreaseQty(cart.item);
-    // }).catch((err) => {
-    //   console.error('There was an error decreasing quantity in cart')
-    // })
   }
 
+  /**
+   * 
+   * @param {string} itemId 
+   * increases the qty of an item
+   * based on the individual items id
+   * within the local cart
+   */
   function onIncreaseClicked(itemId) {
     increaseQty(itemId)
     // .then((cart) => {
@@ -128,22 +65,36 @@ export default function ShoppingCart() {
     // })
   }
 
+  /**
+   * attempt checkout then navigate 
+   * to the order success page and
+   * clear the cart if checkout 
+   * was successful
+   */
   function handleCheckout() {
     http.createTransaction(user.id, grandTotal, cart)
       .then(res => {
         navigate(`/ordersuccess/${res.data.transactionId}`);
-        clearCart()
+        clearCart();
       }).catch(err => {
         console.error(err);
       })
   }
 
 
-  // This variable is needed to calculate the quantity
-  // of items within the local storage shopping cart 
-  // within the totalCartQty function below
+  /**
+   * This variable is needed to calculate the quantity
+   * of items within the local storage shopping cart 
+   * within the totalCartQty function below
+   */
   var cartSum = 0;
 
+  /**
+   * 
+   * @param {number} cartSum 
+   * @returns the total number
+   * of items in the local cart
+   */
   function totalCartQty(cartSum) {
 
     for (let item of cart) {
@@ -153,21 +104,23 @@ export default function ShoppingCart() {
     return cartSum;
   }
 
+  /**
+   * on initialization, calculate the total
+   * qty of items in the local cart and set width of
+   * the screen size. re-render when the cart updates
+   * or the sum of the cart changes
+   */
   useEffect(() => {
     totalCartQty(cartSum)
     function handleResize() {
 
       setWidth(window.innerWidth)
     }
-
-    console.log(width)
     window.addEventListener('resize', handleResize)
 
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-
-
 
   }, [cart, cartSum]);
 
@@ -249,8 +202,14 @@ export default function ShoppingCart() {
   )
 }
 
-
-function CartItem({ id, name, price, quantity, image, onIncreaseClicked, onDecreaseClicked, removeItem, width }) {
+/**
+ * 
+ * @param {string, string, number, number, string, 
+ * function, function, function} param0 
+ * @returns a cart item component in the form of a cart
+ * item "card"
+ */
+function CartItem({ id, name, price, quantity, image, onIncreaseClicked, onDecreaseClicked, removeItem }) {
 
   return (
     <div key={id} className="item-row-container">

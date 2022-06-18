@@ -1,5 +1,7 @@
 const db = require("../index");
 
+// Gets all products from the products table 
+// within the kayaks DB
 exports.getAllProducts = (req, res) => {
 
   const query = `SELECT * FROM kayaks.products;`;
@@ -23,6 +25,8 @@ exports.getAllProducts = (req, res) => {
   });
 };
 
+// Gets all products by id from the products table 
+// within the kayaks DB
 exports.getProductsById = (req, res) => {
 
   let productId = req.params.id;
@@ -54,6 +58,8 @@ exports.getProductsById = (req, res) => {
   });
 };
 
+// Gets all products by brand from the products table 
+// within the kayaks DB
 exports.getProductsByBrand = (req, res) => {
 
   let productBrand = req.params.brand;
@@ -85,6 +91,8 @@ exports.getProductsByBrand = (req, res) => {
   });
 };
 
+// Gets all products by style from the products table 
+// within the kayaks DB
 exports.getProductsByStyle = (req, res) => {
 
   let productStyle = req.params.style;
@@ -116,6 +124,41 @@ exports.getProductsByStyle = (req, res) => {
   });
 };
 
+// Gets all products by size from the products table 
+// within the kayaks DB
+exports.getProductsBySize = (req, res) => {
+
+  let productSize = req.params.size;
+
+  const query = `
+        SELECT * FROM kayaks.products
+            WHERE size = ? ;
+      `;
+
+  const placeholders = [productSize];
+
+  db.query(query, placeholders, (err, results) => {
+
+    if (err) {
+      res.status(500)
+        .send({
+          message: "There was an error getting products by size.",
+          error: err,
+        });
+    } else if (results.length == 0) {
+      res.status(404).send({
+        message: "No products found with that size",
+      });
+    } else {
+      res.send({
+        products: results,
+      });
+    }
+  });
+};
+
+// Gets all products by color from the products table 
+// within the kayaks DB
 exports.getProductsByColor = (req, res) => {
 
   let productColor = req.params.color;
@@ -147,6 +190,8 @@ exports.getProductsByColor = (req, res) => {
   });
 };
 
+// Gets all products by rating from the products table 
+// within the kayaks DB
 exports.getProductsByRating = (req, res) => {
 
   let productRating = req.params.rating;
@@ -178,6 +223,8 @@ exports.getProductsByRating = (req, res) => {
   });
 };
 
+// Gets all products by category from the products table 
+// within the kayaks DB
 exports.getProductsByCategory = (req, res) => {
 
   let productCategory = req.params.category;
@@ -209,43 +256,45 @@ exports.getProductsByCategory = (req, res) => {
   });
 };
 
+// Gets all products from the products table 
+// within the kayaks DB where the 
+//product property values match or 
+//include the substring search query 
 exports.getProductsBySearch = (req, res) => {
-    console.log(req.query);
 
-    var filters = ``;
-    var placeholders = [];
+  var filters = ``;
+  var placeholders = [];
 
-    let entries = Object.entries(req.query);
-    for (let [key, value] of entries) {
-        filters += ` ?? LIKE ? AND`;
-        placeholders.push(key, `%${value}%`);
-    }
-    filters = filters.slice(0, -3);
+  let entries = Object.entries(req.query);
+  for (let [key, value] of entries) {
+    filters += ` ?? LIKE ? AND`;
+    placeholders.push(key, `%${value}%`);
+  }
+  filters = filters.slice(0, -3);
 
-    const query = `
+  const query = `
     SELECT * FROM kayaks.products
         WHERE 
             ${filters}
         ;`;
 
-        console.log(query, placeholders);
-    db.query(query, placeholders, (err, results) => {
- 
-        if (err) {
-            res.status(500)
-                .send({
-                    message: "There was an error getting products by search filter.",
-                    error: err
-                })
-        } else if (results.length == 0) {
-            res.status(404)
-                .send({
-                    message: "no products found with that search filter"
-                })
-        } else {
-            res.send({
-                products: results
-            });
-        }
-    });
+  db.query(query, placeholders, (err, results) => {
+
+    if (err) {
+      res.status(500)
+        .send({
+          message: "There was an error getting products by search filter.",
+          error: err
+        })
+    } else if (results.length == 0) {
+      res.status(404)
+        .send({
+          message: "no products found with that search filter"
+        })
+    } else {
+      res.send({
+        products: results
+      });
+    }
+  });
 }
