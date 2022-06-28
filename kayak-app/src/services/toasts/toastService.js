@@ -49,23 +49,23 @@ export function useToasts() {
 
     return {
         success: (detail, summary) => {
-            let severity = 'success'
+            let severity = 'Success'
             addToast(detail, summary, severity);
         },
         error: (detail, summary) => {
-            let severity = 'error'
+            let severity = 'Error'
             addToast(detail, summary, severity);
         },
         warning: (detail, summary) => {
-            let severity = 'warning'
+            let severity = 'Warning'
             addToast(detail, summary, severity);
         },
         info: (detail, summary) => {
-            let severity = 'info'
+            let severity = 'Info'
             addToast(detail, summary, severity);
         },
         add: (detail, summary, severity, isLingering) => {
-            addToast(detail, summary, severity || 'success', !!isLingering)
+            addToast(detail, summary, severity || 'Success', !!isLingering)
         },
         clear: () => {
             setToasts([]);

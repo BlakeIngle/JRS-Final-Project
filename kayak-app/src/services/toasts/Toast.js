@@ -15,13 +15,13 @@ import {
 export default function Toast({ id, severity, summary, details, isLingering, removeToast }) {
 
     let icon;
-    if (severity == "success") {
+    if (severity == "Success") {
         icon = faCircleCheck;
-    } else if (severity == "error") {
+    } else if (severity == "Error") {
         icon = faCircleXmark;
-    } else if (severity == "warning") {
+    } else if (severity == "Warning") {
         icon = faExclamationTriangle;
-    } else if (severity == "info") {
+    } else if (severity == "Info") {
         icon = faInfoCircle;
     }
 

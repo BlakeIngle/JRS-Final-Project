@@ -120,14 +120,17 @@ nav {
     right: -7px;
     top: -7px;
 
-    font-size: small;
+
+    font-size: 9pt;
 
     color: black;
     background-color: var(--yellow);
 
     border-radius: 50%;
-    width: 1em;
-    height: 1em;
+    width: auto;
+    min-width: 1em;
+    height: auto;
+    min-height: 1em;
     padding: 2px;
 }
 

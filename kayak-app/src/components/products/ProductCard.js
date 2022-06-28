@@ -34,6 +34,8 @@ export default function ProductCard({ id, name, price, brand, color, style, desc
             image,
             quantity
         })
+
+        toasts.success("Item successfully added to shopping cart")
     }
 
     /**
@@ -41,7 +43,7 @@ export default function ProductCard({ id, name, price, brand, color, style, desc
      * logged in and attempts to add to cart
      */
     function requestUserLogin() {
-        toasts.success("Please Login or Signup to add items to cart")
+        toasts.error("Please Login or Signup to add items to cart")
 
     }
 
@@ -54,11 +56,14 @@ export default function ProductCard({ id, name, price, brand, color, style, desc
                     <div className="image-frame">
                         <img className='image' src={image} />
                     </div>
-                    <h4 className='product-name'>{name}</h4>
-                    <h4 className='brand'>{brand}</h4>
-                    <h4 className='price'>${price}</h4>
 
+                    <div className="product-details">
+                        <h4 className='product-name'>{name}</h4>
+                        <p className='brand'>{brand}</p>
+                        <p className='price'>${price}</p>
+                    </div>
                 </Link>
+
                 <button
                     onClick={user ? addItemToCart : requestUserLogin}
                     className='add-button'

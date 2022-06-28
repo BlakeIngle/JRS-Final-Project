@@ -56,7 +56,7 @@ export default function OrderSuccess() {
   return (
     <div className="order-root">
       <h1 className="order-status-success">
-        Order
+        Invoice
       </h1>
       <div className='order-page-content'>
         <div className="order-status-root">
@@ -73,7 +73,7 @@ export default function OrderSuccess() {
 
             <span className="grand-total">
               ORDER TOTAL: <h2>
-              ${order?.total?.toFixed(2)} </h2>
+              ${(order?.total)?.toLocaleString(undefined, { maximumFractionDigits: 2 })} </h2>
             </span>
           </div>
 

@@ -67,6 +67,7 @@
 .product-name {
   font-weight: bold;
   font-size: large;
+  height: 2.5em;
 
   color: black;
 }
@@ -90,6 +91,21 @@
   padding: 0.5rem 1rem;
 
   z-index: 1;
+
+  /* transition: .2s; */
+}
+
+.product-card .add-button:hover {
+  color: var(--yellow);
+  background-color: var(--blue);
+  border: solid var(--yellow) 1px;
+}
+
+.product-card .add-button:active {
+  color: var(--blue);
+  background-color: var(--yellow);
+
+  /* transform: translate(.15em, .15em); */
 }
 
 .add-button span {
@@ -105,8 +121,8 @@
   top: 0;
 }
 
-.add-button:hover {
+/* .add-button:hover {
   color: var(--yellow);
   background-color: var(--blue);
   border: solid var(--yellow) 1px;
-}
+} */

@@ -25,7 +25,7 @@ export default function BurgerMenu() {
 
             <Link
                 to="/products/category/PFDs">
-                PFDs
+                Life&nbsp;Jackets
             </Link>
 
             <Link

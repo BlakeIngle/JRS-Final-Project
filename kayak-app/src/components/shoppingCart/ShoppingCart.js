@@ -128,7 +128,7 @@ export default function ShoppingCart() {
     <div className="shopping-cart-root"
       onSubmit={handleCheckout}>
       <h2 className="cart-header">
-        Shopping Cart ({totalCartQty(cartSum)} items)
+        Shopping&nbsp;Cart ({totalCartQty(cartSum)} items)
       </h2>
       {cart?.length === 0 ?
         <div>
@@ -173,19 +173,19 @@ export default function ShoppingCart() {
 
               <div>
                 <div>Sub Total</div>
-                <div>${subTotal.toFixed(2)}</div>
+                <div>${(subTotal)?.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
               </div>
               <div className="taxes">
                 <div>Tax</div>
-                <div>{tax?.toFixed(2)}</div>
+                <div>${(tax)?.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
               </div>
               <div className="shipping">
                 <div>Shipping Cost</div>
                 <div>${shipping?.toFixed(2)}</div>
               </div>
               <div className="total-cost">
-                <h4>Total Price</h4>
-                <h4>${grandTotal?.toFixed(2)}</h4>
+                <h4>Total<br/>Price</h4>
+                <h4>${(grandTotal)?.toLocaleString(undefined, { maximumFractionDigits: 2 })}</h4>
               </div>
 
               <button type="button"
@@ -219,8 +219,8 @@ function CartItem({ id, name, price, quantity, image, onIncreaseClicked, onDecre
       </div>
 
       <div className="item-name">
-        <div>{name}</div>
-        <div>${price?.toFixed(2)}</div>
+        <div><b>{name}</b></div>
+        <div>${(price)?.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
       </div>
 
       <div className="quantity-btn">
@@ -248,7 +248,7 @@ function CartItem({ id, name, price, quantity, image, onIncreaseClicked, onDecre
 
       <div className="right-side">
         <div className="item-price">
-          ${(price * quantity).toFixed(2)}
+        <b>${(price * quantity)?.toLocaleString(undefined, { maximumFractionDigits: 2 })}</b>
         </div>
         <button onClick={() => {
           removeItem(id)

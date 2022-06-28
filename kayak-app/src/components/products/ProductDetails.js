@@ -20,10 +20,10 @@ export default function ProductDetails({ name, price, brand, color, style, descr
   let { id } = useParams();
 
 
-/**
- * This functions will get a single 
- * product by its product id
- */
+  /**
+   * This functions will get a single 
+   * product by its product id
+   */
   function getSingleProduct() {
     if (id) {
       http.getProductsById(id)
@@ -38,23 +38,15 @@ export default function ProductDetails({ name, price, brand, color, style, descr
     }
   }
 
-   /**
-     * This functions adds all the 
-     * necessary properties of an 
-     * individual item, to the local cart
-     */
+  /**
+    * This functions adds all the 
+    * necessary properties of an 
+    * individual item, to the local cart
+    */
   function addItemToCart() {
-    addItem({
-      id,
-      name,
-      price,
-      brand,
-      color,
-      style,
-      description,
-      image,
-      quantity
-    })
+    addItem(product)
+    console.log(product.name)
+    toasts.success("Item successfully added to shopping cart")
   }
 
   /**

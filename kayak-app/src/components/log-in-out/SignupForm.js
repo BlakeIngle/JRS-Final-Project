@@ -12,7 +12,7 @@ export default function SignUpPage() {
   return (
     <div className="signup-root">
       <h1 className='header'>
-        Signup
+        Sign Up
       </h1>
 
       <div className="input-container">
@@ -80,7 +80,7 @@ function SignUpForm() {
         .then(res => {
           const user = res.data.user;
           localStorageService.saveUser(user);
-          navigate(`/`);
+          navigate(`/products`);
 
           toasts.success("Account created successfully")
         }).catch(err => {

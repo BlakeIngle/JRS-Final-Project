@@ -1,7 +1,7 @@
 import React from 'react'
-import kayakImage1 from '/Users/tommyzwick/GIT/JRS-Final-Project/kayak-app/src/images/kayak-adventure-1.jpg'
-import kayakImage2 from '/Users/tommyzwick/GIT/JRS-Final-Project/kayak-app/src/images/kayak-adventure-2.jpg'
-import kayakImage5 from '/Users/tommyzwick/GIT/JRS-Final-Project/kayak-app/src/images/kayak-adventure-5.jpg'
+import kayakImage1 from '../../images/kayak-adventure-1.jpg'
+import kayakImage2 from '../../images/kayak-adventure-2.jpg'
+import kayakImage5 from '../../images/kayak-adventure-5.jpg'
 import '../homePage/HomePage.css'
 import { useNavigate } from "react-router-dom";
 import Carousel from './Carousel';

@@ -2,7 +2,8 @@
   position: fixed;
   top: 2rem;
   right: 0;
-  /* //this is a last resort to put elements on top of things z index */
+  /* this is a last resort to put elements on 
+     top of things z index */
   z-index: 100;
 }
 
@@ -14,7 +15,7 @@
   width: 18rem;
   text-align: left;
 
-  color: var(--color);
+  /* color: var(--color); */
   background-color: var(--background-color);
 
   position: relative; /* this is now the 'parent' */
@@ -24,11 +25,10 @@
 
   padding: 0.5em;
 
-  animation: fade-in-out 3000ms;
+  animation: slide-in-left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+  fade-in-out 3s;
 }
-.toast-root.lingering {
-  animation: fade-in 0.3s;
-}
+
 
 .toast-root:hover {
   box-shadow: 0 0 0 0 var(--background-color);
@@ -42,22 +42,22 @@
   width: 7em;
 }
 
-.toast-button.success {
+.toast-button.Success {
   background-color: var(--blue);
 }
 
-.toast-button.error {
+.toast-button.Error {
   background-color: var(--yellow);
 }
 
-.toast-button.warning {
+.toast-button.Warning {
   background-color: hsl(60, 70%, 44%);
 }
-.toast-button.info {
+.toast-button.Info {
   background-color: hsl(196, 70%, 52%);
 }
 
-.toast-button.custom {
+.toast-button.Custom {
   background-color: hsl(30, 70%, 47%);
 }
 
@@ -65,21 +65,21 @@
   padding-left: 1rem;
   text-align: left;
 }
-.toast-root.success {
-  color: var(--yellow);
-  --background-color: var(--blue);
+.toast-root.Success {
+  color: var(--blue);
+  --background-color: white;
 }
 
-.toast-root.error {
+.toast-root.Error {
   color: var(--yellow);
   --background-color: black;
 }
 
-.toast-root.warning {
+.toast-root.Warning {
   --background-color: rgb(196, 196, 28);
 }
 
-.toast-root.info {
+.toast-root.Info {
   --background-color: rgb(31, 178, 232);
 }
 
@@ -108,8 +108,8 @@
 }
 
 .toast-root .x-button:hover {
-  background-color: black;
-  color: var(--background-color);
+  background-color: red;
+  color: white;
 }
 
 .toast-root .summary {

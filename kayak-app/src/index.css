@@ -1,6 +1,11 @@
+:root {
+  --blue: #29a8a4;
+  --yellow: #f9c16c;
+}
+
 html,
 body {
-  background-color: var(--yellow);
+  background-color: var(--blue);
 }
 
 body {

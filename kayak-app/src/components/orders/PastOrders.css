@@ -1,26 +1,41 @@
 .past-orders-root {
     margin-top: -1em;
     padding-top: 1em;
-    border-radius: 10px;
+}
+
+.past-orders-root h1 {
+    color: white;
+    background-color: var(--blue);
+    margin: 0;
+    padding: 1em;
+    padding-bottom: 0.5em;
 }
 
 
-.past-orders-root .order-history-container {
-    background-color: white;
 
-    min-height: 50vh;
+.past-orders-root .order-history-container {
+    background-color: var(--blue);
+
+    min-height: 100vh;
     padding: 1em;
-    border-radius: 10px;
 }
 
 .past-orders-root th {
     text-decoration: underline;
 
-    color: var(--yellow);
-    background-color: var(--blue);
-   
+    color: black;
+    background-color: var(--yellow);
+
     padding: 1em;
     font-size: 12pt;
+}
+
+.past-orders-root th:first-of-type {
+    border-top-left-radius: 10px;
+}
+
+.past-orders-root th:last-of-type {
+    border-top-right-radius: 10px;
 }
 
 .past-orders-root a {
@@ -38,6 +53,9 @@
 
     margin: auto;
     max-width: 1000px;
+    background-color: white;
+
+    border-radius: 10px;
 
     border-collapse: collapse;
 }
@@ -45,7 +63,6 @@
 .past-orders-root td {
     padding: 1em;
 
-    border-bottom: solid var(--blue) 1px;
 }
 
 .past-orders-root td:not(td:first-child) {

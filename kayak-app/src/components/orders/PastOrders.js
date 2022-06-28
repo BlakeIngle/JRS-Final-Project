@@ -60,7 +60,7 @@ export default function PastOrders() {
                 </a>
               </td>
               <td>{new Date(transaction.date).toLocaleDateString()}</td>
-              <td>${transaction.total.toFixed(2)}</td>
+              <td>${(transaction.total)?.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td>
             </tr>
           ))}
 

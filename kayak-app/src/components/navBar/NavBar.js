@@ -68,29 +68,33 @@ export default function () {
    * within the totalCartQty below
    */
   var cartSum = 0;
-/**
- * 
- * @param {number} cartSum 
- * @returns quantity of items in local cart
- */
+  /**
+   * 
+   * @param {number} cartSum 
+   * @returns quantity of items in local cart
+   */
   function totalCartQty(cartSum) {
 
     for (let item of cart) {
       cartSum += item.quantity
 
     }
-    return cartSum;
+    if (cartSum > 99) {
+      return "99+"
+    } else {
+      return cartSum;
+    }
   }
 
 
-/**
- * Checks the local cart qty and 
- * window size on initialization.
- * Re-renders page and checks same values,
- * everytime the window size updates, 
- * the local cart or its qty updates,
- * or the location of the route
- */
+  /**
+   * Checks the local cart qty and 
+   * window size on initialization.
+   * Re-renders page and checks same values,
+   * everytime the window size updates, 
+   * the local cart or its qty updates,
+   * or the location of the route
+   */
   useEffect(() => {
 
     totalCartQty(cartSum)
