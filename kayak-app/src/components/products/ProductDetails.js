@@ -9,7 +9,7 @@ import '../../services/toasts/Toast.css'
 import '../products/ProductDetails.css'
 
 
-export default function ProductDetails({ name, price, brand, color, style, description, image, rating, quantity, product_id, customer_id, total }) {
+export default function ProductDetails({ name, price, brand, color, style, size, description, image, rating, quantity, product_id, customer_id, total }) {
 
   const { addItem } = useContext(Context)
   const http = useApi();
@@ -84,18 +84,27 @@ export default function ProductDetails({ name, price, brand, color, style, descr
             <p>Most customers receive <br></br>within <b>2-3 days</b></p>
           </div>
 
-          <p className="description">{product?.description}</p>
-        </div>
+          <p className="description">
+            {product?.description}
+          </p>
+          <p className="description">
+            Color:&nbsp;<b>{product?.color}</b>
+          </p>
+          <p className="description">
+            Size:&nbsp;<b>{product?.size}</b>
+          </p>
 
+        </div>
 
         <div className='product-price-container'>
 
-          <h4 className='price'>${product?.price}</h4>
-
-          <div>
+          <div className="quantity">
             <b>Quantity</b>
             <p>1</p>
           </div>
+
+          <h4 className='price'>${(product?.price)?.toLocaleString(undefined, { maximumFractionDigits: 2 })}</h4>
+
 
           <button
             onClick={user ? addItemToCart : requestUserLogin}

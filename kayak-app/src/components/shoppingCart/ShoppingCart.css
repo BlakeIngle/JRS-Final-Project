@@ -31,7 +31,7 @@
 .shopping-cart-root .cart-summary-container {
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
+    gap: 2em;
 
     background-color: white;
     border: solid var(--blue) .2px;
@@ -41,12 +41,15 @@
 
     margin: 1em;
     padding: 1em;
-    height: fit-content;
+    height: 60%;
+    width: 20%;
+    
     text-align: center;
 }
 
 /* checkout button style */
 .shopping-cart-root .cart-summary-container .checkout-btn {
+    cursor: pointer;
     color: black;
     background-color: var(--yellow);
 
@@ -73,7 +76,7 @@
     justify-content: space-evenly;
     align-items: center;
     text-align: center;
-
+    border-radius: 4px;
 
     margin: 1em;
     padding: 1em;
@@ -81,10 +84,17 @@
     background-color: white;
 }
 
+.shopping-cart-root .item-row-container a {
+    text-decoration: none;
+    color: black;
+    padding-left: 1em;
+}
+
 .shopping-cart-root .item-row-container .cart-item-image-frame {
     display: flex;
     justify-content: center;
     text-align: center;
+    flex-grow: 1;
 
     margin: auto;
     height: 11em;
@@ -94,7 +104,7 @@
 .shopping-cart-root .item-row-container img {
     display: block;
     overflow: hidden;
-
+    flex-grow: 1;
     margin: auto;
     height: auto;
     width: fit-content;
@@ -103,6 +113,8 @@
 
 /* quanitity buttons style */
 .shopping-cart-root .item-row-container .quantity-btn button {
+    cursor: pointer;
+
     border: none;
     border-radius: 5px;
 
@@ -132,7 +144,7 @@
 
 .shopping-cart-root .item-row-container .item-name {
     width: 10em;
-    flex-grow: 2;
+    /* flex-grow: 2; */
 }
 
 .shopping-cart-root .item-row-container .item-price {
@@ -142,11 +154,11 @@
 }
 
 .shopping-cart-root .item-row-container .right-side {
-   display: flex;
-   flex-direction: column;
-  align-items:center;
-    text-align: right;
-    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     gap: .5em;
 }
 
@@ -170,7 +182,7 @@
 .shopping-cart-root .shopping-cart-items {
     display: flex;
     flex-direction: column;
-    flex-grow: 4;
+    width: 60%;
     max-height: 95vh;
     overflow-y: auto;
 }
@@ -229,8 +241,11 @@
 .item-row-container .quantity-btn {
     display: flex;
     align-items: flex-end;
-    padding-left: 2em;
-    flex-grow: 1;
+    /* padding-left: 2em; */
+    /* flex-grow: 1; */
+    justify-content: center;
+    margin: auto;
+
 }
 
 .item-row-container .item-quantity {
@@ -261,10 +276,12 @@
         border-radius: 4px;
     }
 
+
     .shopping-cart-root .item-row-container .item-name {
         display: flex;
         flex-direction: column;
         gap: 5px;
+
 
         width: auto;
     }

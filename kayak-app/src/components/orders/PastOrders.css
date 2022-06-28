@@ -1,6 +1,7 @@
 .past-orders-root {
     margin-top: -1em;
     padding-top: 1em;
+    align-items: center;
 }
 
 .past-orders-root h1 {
@@ -18,6 +19,7 @@
 
     min-height: 100vh;
     padding: 1em;
+
 }
 
 .past-orders-root th {
@@ -50,9 +52,9 @@
 
 .past-orders-root table {
     table-layout: auto;
+    width: 90%;
 
     margin: auto;
-    max-width: 1000px;
     background-color: white;
 
     border-radius: 10px;
@@ -63,10 +65,11 @@
 .past-orders-root td {
     padding: 1em;
 
+
 }
 
 .past-orders-root td:not(td:first-child) {
-    text-align: right;
+    text-align: center;
 }
 
 .past-orders-root tr:nth-child(even) {

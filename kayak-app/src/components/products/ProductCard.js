@@ -60,7 +60,7 @@ export default function ProductCard({ id, name, price, brand, color, style, desc
                     <div className="product-details">
                         <h4 className='product-name'>{name}</h4>
                         <p className='brand'>{brand}</p>
-                        <p className='price'>${price}</p>
+                        <p className='price'>${(price).toLocaleString(undefined, { maximumFractionDigits: 2 })}</p>
                     </div>
                 </Link>
 

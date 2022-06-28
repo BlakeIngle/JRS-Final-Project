@@ -142,7 +142,7 @@ function ProductPage() {
 
     <div className="products-root">
       <h1 className='header'>
-        SUMMER STARTS HERE!
+        KICK OFF YOUR ADVENTURE HERE!
       </h1>
 
       <div className="search-bar-container">

@@ -184,7 +184,7 @@ export default function ShoppingCart() {
                 <div>${shipping?.toFixed(2)}</div>
               </div>
               <div className="total-cost">
-                <h4>Total<br/>Price</h4>
+                <h4>Total<br />Price</h4>
                 <h4>${(grandTotal)?.toLocaleString(undefined, { maximumFractionDigits: 2 })}</h4>
               </div>
 
@@ -214,14 +214,18 @@ function CartItem({ id, name, price, quantity, image, onIncreaseClicked, onDecre
   return (
     <div key={id} className="item-row-container">
 
-      <div className="cart-item-image-frame">
-        <img src={image} />
-      </div>
+      <Link to={`/products/${id}`}>
+        <div className="cart-item-image-frame">
+          <img src={image} />
+        </div>
+      </Link>
 
-      <div className="item-name">
-        <div><b>{name}</b></div>
-        <div>${(price)?.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
-      </div>
+      <Link to={`/products/${id}`}>
+        <div className="item-name">
+          <div><b>{name}</b></div>
+          <div>${(price)?.toLocaleString(undefined, { maximumFractionDigits: 2 })}</div>
+        </div>
+      </Link>
 
       <div className="quantity-btn">
         <button
@@ -248,7 +252,7 @@ function CartItem({ id, name, price, quantity, image, onIncreaseClicked, onDecre
 
       <div className="right-side">
         <div className="item-price">
-        <b>${(price * quantity)?.toLocaleString(undefined, { maximumFractionDigits: 2 })}</b>
+          <b>${(price * quantity)?.toLocaleString(undefined, { maximumFractionDigits: 2 })}</b>
         </div>
         <button onClick={() => {
           removeItem(id)
